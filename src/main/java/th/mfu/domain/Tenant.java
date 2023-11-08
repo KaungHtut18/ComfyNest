@@ -10,13 +10,35 @@ public class Tenant{
     private String firstName;
     private String lastName;
     private String gender;
-    private String address;
+    private String phone;
+    private String password;
 
     //relationship
 
     public Tenant(){
 
     }
+    
+
+    public Tenant(String firstName, String lastName,String email,  String gender, String phone,String password) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.phone = phone;
+        this.password=password;
+    }
+
+    
+    public String getPassword() {
+        return password;
+    }
+
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 
     public String getEmail() {
         return email;
@@ -50,12 +72,12 @@ public class Tenant{
         this.gender = gender;
     }
 
-    public String getAddress() {
-        return address;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     
