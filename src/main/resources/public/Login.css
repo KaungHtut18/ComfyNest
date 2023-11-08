@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;1,300&family=Poppins:wght@300;400;500;600&family=Roboto&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', 'sans-serif';
+    color: #25272c;
+}
+body{
+    background: url(Login.JPG) no-repeat center fixed;
+    background-size: cover;
+}
+.main{
+    position: relative;
+    display: flex;
+}
+.main .sub1{
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    margin-top: 10%;
+}
+.main .sub2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100vh;
+}
+.title h4{
+    color: #a47145;
+    letter-spacing: 1px;
+    font-weight: 400;
+    margin-top: -8px;
+}
+.title h1{
+    font-size: 60px;
+    color: #a47145;
+}
+.container{
+    width: 440px;
+    padding: 0px 20px;
+}
+.wrapper{
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px 1px rgb(148, 147, 147);
+}
+.wrapper form{
+    padding: 60px 25px 40px 25px;
+}
+.wrapper .above{
+    font-size: 24px;
+    font-weight: 400;
+    padding-left: 5px;
+}
+.wrapper .below{
+    font-size: 12px;
+    font-weight: 400;
+    padding-left: 5px;
+    margin-bottom: 30px;
+}
+.wrapper form .row{
+    position: relative;
+    height: 45px;
+    margin-bottom: 30px;
+}
+.wrapper form .row input{
+    height: 100%;
+    width: 100%;
+    padding-left: 10px;
+    outline: none;
+    border-radius: 10px;
+    border: 1px solid rgb(152, 149, 149);
+    font-size: 16px;
+    padding-left: 15px;
+}
+.wrapper form .row input:focus{
+    box-shadow: inset 0px 0px 2px 2px rgb(237, 233, 233);
+}
+.wrapper form .button input{
+    width: 100%;
+    padding: 10px 5px;
+    background-color:#a47145;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 300;
+    cursor: pointer;
+    border-radius: 10px;
+}
+.wrapper form .button input:hover{
+    background-color:#845b37;
+}
+.wrapper form .check{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    margin-left: 5px;
+}
+.wrapper form .cb{
+    margin-right: 5px;
+}
+.wrapper form .check .rm{
+    margin-right: 118px;
+}
+.wrapper form .forget{
+    margin-top: 10px;
+    text-align: center;
+}
+.wrapper form .signup-link{
+    text-align: center;
+    font-size: 17px;
+    margin-top: 30px;
+}
+.wrapper form .signup-link a{
+    text-decoration: none;
+    color: #25272c;
+}
+.wrapper form .signup-link a:hover{
+    text-decoration: underline;
+}
+.wrapper form input::placeholder{
+    font-size: 14px;
+    color: rgb(193, 189, 189);
+}
+.wrapper form label{
+    font-size: 14px;
+    font-weight: 500;
+}
+.wrapper form .pass span{
+    position: absolute;
+    top: 105%;
+    right: 15px;
+    transform: translate(0, -50%);
+    cursor: pointer;
+}
+.wrapper form .pass span i{
+    font-size: 20px;
+    color: rgb(152, 149, 149);
+}
+.wrapper form .pass{
+    position: relative;
+    height: 45px;
+    margin-bottom: 30px;
+}
+.wrapper form .pass input{
+    font-size: 16px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    outline: none;
+    padding-left: 10px;
+    border: 1px solid rgb(152, 149, 149);
+}
+input[type="checkbox"] {
+    appearance: none; /* Removes default styles (may not work in all browsers) */
+    -webkit-appearance: none; /* For older WebKit-based browsers */
+    -moz-appearance: none; /* For older Firefox browsers */
+    width: 20px; /* Set the desired width for the checkbox */
+    height: 20px; /* Set the desired height for the checkbox */
+    
+    border: 1px solid rgb(152, 149, 149); /* Set the border color */
+    border-radius: 4px; /* Add some rounded corners */
+    cursor: pointer; /* Change cursor on hover */
+}
+input[type="checkbox"]:checked {
+    background-color: rgb(152, 149, 149); /* Set the background color when checked */
+}
+  input[type="checkbox"]:checked::before {
+    content: '\2713'; /* Unicode check mark character */
+    display: block;
+    color: white; /* Set the color of the check mark to white */
+    font-size: 14px; /* Adjust the font size as needed */
+    text-align: center;
+    line-height: 20px; /* Center vertically in the checkbox */
+}
+
+
