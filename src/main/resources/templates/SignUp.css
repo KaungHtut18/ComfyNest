@@ -187,3 +187,9 @@ body{
     align-items: center;
     margin-left: 16px;
 }
+.wrapper form .pass input:focus{
+    box-shadow: inset 0px 0px 2px 2px rgb(237, 233, 233);
+}
+.wrapper form .phoneNumber input:focus{
+    box-shadow: inset 0px 0px 2px 2px rgb(237, 233, 233);
+}
