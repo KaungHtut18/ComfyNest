@@ -8,7 +8,7 @@
     color: #25272c;
 }
 body{
-    background: url(Login.JPG) no-repeat center fixed;
+    background: url(/static/images/Login.JPG) no-repeat center fixed;
     background-size: cover;
 }
 .main{
