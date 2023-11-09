@@ -47,6 +47,7 @@ td{
    margin-bottom: 10px;
    background-color: #ffedd8;
    border-radius: 10px;
+   border: 2px solid #8b5e34;
 }
 .name{
    flex:1;
@@ -54,6 +55,7 @@ td{
 .btn{
   display: flex;
   gap: 10px;
+  
 }
 .btn .see{
    width: 120px;
@@ -62,6 +64,7 @@ td{
    border-radius: 8px;
    background-color: #f3d5b5;
    cursor: pointer;
+   font-weight: 500;
 }
 .btn .see:hover{
    background-color: #e7bc91;
@@ -74,6 +77,7 @@ td{
    background-color: #a47148;
    color: white;
    cursor: pointer;
+   font-weight: 500;
 }
 .btn .book:hover{
    background-color: #8b5e34;
