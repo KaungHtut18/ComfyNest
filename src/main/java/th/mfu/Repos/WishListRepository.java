@@ -1,4 +1,4 @@
-package th.mfu;
+package th.mfu.Repos;
 
 import org.springframework.data.repository.CrudRepository;
 

@@ -3,6 +3,9 @@ package th.mfu;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +13,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import th.mfu.Repos.DormitoryRepository;
+import th.mfu.Repos.LanalordRepository;
+import th.mfu.Repos.RatingRepository;
+import th.mfu.Repos.TenantRepository;
+import th.mfu.Repos.WishListRepository;
 import th.mfu.domain.Tenant;
 
 
@@ -27,6 +35,11 @@ public class TenantController {
     RatingRepository ratingRepository;
     @Autowired
     WishListRepository wishListRepository;
+    //for the current user so that we will not always need to run the findById funciton
+    Tenant tenant = new Tenant();
+
+    //To encode and decode password
+    private PasswordEncoder pwEncoder = new BCryptPasswordEncoder();
 
     public TenantController(DormitoryRepository dormRepo, LanalordRepository landLordRepo,
             TenantRepository tenantRepository, RatingRepository ratingRepository,
@@ -45,16 +58,22 @@ public class TenantController {
         return "login";
     }
 
-    @GetMapping("/login")
+    @GetMapping("/")
     public String goToLogin()
     {
         return "Login";
     }
     @PostMapping("/login")
-    public String validate()
+    public String validate(@RequestParam String email, @RequestParam String password)
     {
         //TODO: get data from the web page, encrypt password and match with the database to validate
-        return "redirect:/home";
+        Tenant temp = tenantRepository.findById(email).get();
+        if(pwEncoder.matches(password, temp.getPassword()))
+        {
+            tenant=temp;
+            return "redirect:/home";
+        }
+        return "redirect:/";
     }
 
     @GetMapping("/register")
@@ -68,18 +87,30 @@ public class TenantController {
     @RequestParam String email,
     @RequestParam String phone,
     @RequestParam String password,
-    @RequestParam String gender) 
+    @RequestParam String gender,
+    Model model) 
     {
         //TODO: store the user data in the database
-        Tenant newtTenant = new Tenant(firstName, lastName, email, gender, phone, password);
-        tenantRepository.save(newtTenant);
-        return "redirect:/home";
+        
+        if(tenantRepository.findById(email).isPresent())
+        {
+            model.addAttribute("error", true);
+            return "redirect:/register";
+        }
+        else
+        {
+            Tenant t = new Tenant(firstName, lastName, email, gender, phone, password);
+            tenantRepository.save(t);
+            tenant=t;
+            return "redirect:/home";
+        }
     }
 
    @GetMapping("/home")
    public String home(Model model)
    {
-        model.addAttribute("tenants", tenantRepository.findAll());
+        model.addAttribute("error", true);
+        model.addAttribute("tenants", tenant);
         //TODO: get the user detail and display the data of dorms with 10 results per page
         return "home";
    }

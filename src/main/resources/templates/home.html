@@ -6,5 +6,7 @@
             <li th:text="${tenant.password}"></li>
             <li th:text="${tenant.gender}"></li>
         </ul>
+        <h3 th:if="${error}"> This is an error message</h3>
+        <a href="/login">go to login page</a>
     </body>
 </html>

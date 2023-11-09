@@ -74,6 +74,12 @@
         <artifactId>h2</artifactId>
         <scope>runtime</scope>
     </dependency>
+    
+    <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-core</artifactId>
+        <version>6.1.2</version>
+    </dependency>
 
      <!-- Add CloudSQL Starter for MySQL -->
      <!-- <dependency>
