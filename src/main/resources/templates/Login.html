@@ -24,6 +24,7 @@
                         <div class="above">Login </div>
         
                         <div class="below">Glad you're back.!</div>
+                        <h3 th:if="${error}" class="error">Invalid login info. Please try again</h3>
         
                         <div class="row">
                             <label for="email">E-mail</label><br>
@@ -60,6 +61,6 @@
     </div>
     
     
-   <script src="index.js"></script>
+   <script src="\static\js\index.js"></script>
 </body>
 </html>

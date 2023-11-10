@@ -1,6 +1,7 @@
 package th.mfu;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -11,7 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import th.mfu.Repos.DormitoryRepository;
 import th.mfu.Repos.LanalordRepository;
@@ -63,17 +66,30 @@ public class TenantController {
     {
         return "Login";
     }
+
     @PostMapping("/login")
-    public String validate(@RequestParam String email, @RequestParam String password)
+    public String validate(@RequestParam String email, @RequestParam String password,RedirectAttributes re)
     {
         //TODO: get data from the web page, encrypt password and match with the database to validate
-        Tenant temp = tenantRepository.findById(email).get();
-        if(pwEncoder.matches(password, temp.getPassword()))
+        Tenant temp;
+        try
+        {
+            temp = tenantRepository.findById(email).get();
+            if(pwEncoder.matches(password, temp.getPassword()))
         {
             tenant=temp;
             return "redirect:/home";
         }
-        return "redirect:/";
+        else{
+            re.addFlashAttribute("error", true);
+            return "redirect:/";
+        }
+        }catch(NoSuchElementException e)
+        {
+            re.addFlashAttribute("error", true);
+            return "redirect:/";
+        }
+        
     }
 
     @GetMapping("/register")
@@ -88,13 +104,13 @@ public class TenantController {
     @RequestParam String phone,
     @RequestParam String password,
     @RequestParam String gender,
-    Model model) 
+    RedirectAttributes re) 
     {
         //TODO: store the user data in the database
         
         if(tenantRepository.findById(email).isPresent())
         {
-            model.addAttribute("error", true);
+            re.addFlashAttribute("error", true);
             return "redirect:/register";
         }
         else
@@ -114,7 +130,12 @@ public class TenantController {
         //TODO: get the user detail and display the data of dorms with 10 results per page
         return "home";
    }
-
+   
+   @GetMapping("/dorm/{id}")
+   public String showDormDetail(@PathVariable int id, Model model)
+   {
+        return "DormDetail";
+   }
    //TODO: add functions for searching, user account page
     
 }
