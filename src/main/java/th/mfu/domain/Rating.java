@@ -20,6 +20,16 @@ public class Rating
     private int fiveCount=0;
     private int zeroCount=0;
 
+    public Rating(int id, int oneCount, int twoCount, int threeCount, int fourCount, int fiveCount, int zeroCount) {
+        this.id = id;
+        OneCount = oneCount;
+        this.twoCount = twoCount;
+        this.threeCount = threeCount;
+        this.fourCount = fourCount;
+        this.fiveCount = fiveCount;
+        this.zeroCount = zeroCount;
+    }
+
     public Rating()
     {
 

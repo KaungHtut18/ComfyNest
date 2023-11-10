@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/static/css/DormDetail.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
-<body>
+<body th:object="${dorm}">
     <div class="back">
         <a href="LoginPage.html">
             <i class='bx bx-left-arrow-circle'></i>
@@ -19,19 +19,19 @@
         <div class="images">
             <div class="one">
                 <div class="first">
-                    <img src="/static/images/3K1.JPG" alt="">
+                    <img th:src="@{/static/images/{fileName}(fileName=${dorm.img1})}" alt="">
                 </div>
                 <div class="second">
-                    <img src="/static/images/3K2.JPG" alt="">
+                    <img th:src="@{/static/images/{fileName}(fileName=${dorm.img2})}"  alt="">
                 </div>
             </div>
                
             <div class="two">
                 <div class="first">
-                    <img src="/static/images/3K3.JPG" alt="">
+                    <img th:src="@{/static/images/{fileName}(fileName=${dorm.img3})}"  alt="">
                 </div>
                 <div class="second">
-                    <img src="/static/images/3K4.JPG" alt="">
+                    <img th:src="@{/static/images/{fileName}(fileName=${dorm.img4})}"  alt="">
                 </div>
             </div>
                 
@@ -40,7 +40,7 @@
             <div class="text">
                 <div class="header">
                     <div class="dName">
-                        <h2>3K NangLae</h2>
+                        <h2 th:text="${dorm.name}"></h2>
                     </div>
                     <div class="ratAv">
                         <div class="rating">
@@ -50,38 +50,41 @@
                             <i class='bx bxs-star' ></i>
                             <i class='bx bx-star'></i>
                         </div>
-                        <div class="Av">
-                            Available
+                        <div class="Av" th:if="${dorm.fullyBooked}">
+                            Full
+                        </div>
+                        <div class="Av" th:if="${dorm.fullyBooked=false}">
+                            Availble
                         </div>
                     </div>
                 </div>
                 <div class="detail">
                     <div class="price" id="row">
-                        <i class='bx bx-money'></i> ฿ <span>3500</span>/month
+                        <i class='bx bx-money'></i> ฿ <span th:text="${dorm.price}"></span>/month
                     </div>
                     <div class="gender" id="row">
-                        <i class='bx bx-male-female'></i><span> Unisex</span>
+                        <i class='bx bx-male-female'></i><span th:text="${dorm.gender}"> </span>
                     </div>
                     <div class="location" id="row">
-                        <i class='bx bxs-map'></i><span> Lorem ipsum dolor sit amet consectetur adipisicing elit</span>
+                        <i class='bx bxs-map'></i><span th:text="${location}"> Lorem ipsum dolor sit amet consectetur adipisicing elit</span>
                     </div>
                     <div class="phone" id="row">
-                        <i class='bx bxs-phone' ></i><span> 0123456789</span>
+                        <i class='bx bxs-phone' ></i><span th:text="${phone}"> 0123456789</span>
                     </div>
                     <div class="email" id="row">
-                        <i class='bx bxs-envelope' ></i><span> mileycyrus@gmail.com</span>
+                        <i class='bx bxs-envelope' ></i><span th:text="${dorm.email}"></span>
                     </div>
                     <div class="api">
 
                     </div><br>
                     <div class="desc">
-                        <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam eius reprehenderit fugiat facere officiis praesentium atque, vero quia possimus recusandae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur totam labore magnam consequatur nulla doloribus quam, reiciendis nam beatae odio pariatur repellendus eius dolore, magni dicta! Placeat quia animi accusamus.</span>
+                        <span th:text="${dorm.description}"></span>
                     </div><br>
                     <div class="ameni">
-                        <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere libero doloribus tenetur quibusdam eius excepturi nesciunt reprehenderit assumenda vero vel?</span>
+                        <span th:text="${dorm.Amenties}"></span>
                     </div><br>
                     <div class="rules">
-                        <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorem nihil maiores autem facere ab repellendus commodi tempora nulla laudantium vitae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad eveniet ullam a dolor atque maxime mollitia non odio debitis magnam earum quos dolore quo quisquam nulla illum, repellendus animi cum.</span>
+                        <span th:text="${dorm.rules}"></span>
                     </div>
                 </div>
             </div>

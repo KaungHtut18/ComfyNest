@@ -10,10 +10,16 @@ public class Landlord
     private String email;
     private String firstName;
     private String lastName;
-    private int telephone;
+    private String telephone;
     public Landlord()
     {
 
+    }
+    public Landlord(String email, String firstName, String lastName, String telephone) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.telephone = telephone;
     }
     public String getEmail() {
         return email;
@@ -33,10 +39,10 @@ public class Landlord
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    public int getTelephone() {
+    public String getTelephone() {
         return telephone;
     }
-    public void setTelephone(int telephone) {
+    public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
     
