@@ -8,7 +8,7 @@
     color: #25272c;
 }
 body{
-    background: url(/static/images/SignUp.JPG) no-repeat center fixed;
+    background: url(SignUp.JPG) no-repeat center fixed;
     background-size: cover;
 }
 .main{
@@ -66,12 +66,12 @@ body{
 .wrapper form .row{
     position: relative;
     height: 45px;
-    margin-bottom: 30px;
+    margin-bottom: 45px;
 }
 .wrapper form .phoneNumber{
     position: relative;
     height: 45px;
-    margin-bottom: 30px;
+    margin-bottom: 45px;
 }
 .wrapper form .phoneNumber input{
     font-size: 16px;
@@ -82,10 +82,13 @@ body{
     padding-left: 10px;
     border: 1px solid rgb(152, 149, 149);
 }
+.wrapper form .phoneNumber input:focus{
+    box-shadow: inset 0px 0px 2px 2px rgb(237, 233, 233);
+}
 .wrapper form .pass{
     position: relative;
     height: 45px;
-    margin-bottom: 40px;
+    margin-bottom: 45px;
 }
 .wrapper form .pass input{
     font-size: 16px;
@@ -97,14 +100,17 @@ body{
     padding-left: 10px;
     border: 1px solid rgb(152, 149, 149);
 }
-.wrapper form .pass span{
+.wrapper form .pass input:focus{
+    box-shadow: inset 0px 0px 2px 2px rgb(237, 233, 233);
+}
+.wrapper form .pass .hide{
     position: absolute;
-    top: 105%;
+    top: 110%;
     right: 15px;
     transform: translate(0, -50%);
     cursor: pointer;
 }
-.wrapper form .pass span i{
+.wrapper form .pass .hide i{
     font-size: 20px;
     color: rgb(152, 149, 149);
 }
@@ -186,10 +192,4 @@ body{
     justify-content: center;
     align-items: center;
     margin-left: 16px;
-}
-.wrapper form .pass input:focus{
-    box-shadow: inset 0px 0px 2px 2px rgb(237, 233, 233);
-}
-.wrapper form .phoneNumber input:focus{
-    box-shadow: inset 0px 0px 2px 2px rgb(237, 233, 233);
 }
