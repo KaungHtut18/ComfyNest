@@ -1,88 +1,97 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SingUp | ComfyNest</title>
-    <link rel="stylesheet" href="/static/css/SignUp.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>SingUp | ComfyNest</title>
+   <!-- CSS -->
+   <link rel="stylesheet" href="/static/css/SignUp.css">
+   <!-- boxicons -->
+   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-    <div class="main">
-        <div class="sub1">
-            <div class="title">
-                <h1>ComfyNest</h1>
-                <h4>Your Key to Hassle-Free Dormitory Discovery</h4>
-            </div>
-        </div>
-        <div class="sub2">
-            <div class="container">
-                <div class="wrapper">
-                    
-                    <form action="/register" method="post">
-                        <div class="text">
-                            <h2>Sign Up</h1>
-                            <h5>Just some details to get you in.!</h4>
-                           
-                        </div>
-    
-                        <div class="row">
-                            <label for="fN">First Name</label><br>
-                            <input type="text" id="fN" name="firstName" required autocomplete="off" placeholder="Enter Your First Name"> 
-                        </div>
-        
-                        <div class="row">
-                            <label for="lN">Last Name</label><br>
-                            <input type="text" id="lN" name="lastName" required autocomplete="off" placeholder="Enter Your Last Name">
-                        </div>
-        
-                        <div class="row">
-                            <label for="email">E-mail</label><br>
-                            <input type="email" id="email" name="email" required novalidate autocomplete="off" placeholder="Enter Your Email">
-                            <h5 th:if="${error}" style="color: red;">This email is already used. Please try again with different email</h5>
-                        </div>
-                        
-                        <div class="phoneNumber">
-                            <label for="phone">Phone Number</label><br>
-                            <select name="#" class="ph" size="1">
-                                <option value="#" selected>+09</option>
-                                <option value="#" selected>+66</option>
-                                <option value="#">+08</option>
-                            </select>
-                            <input type="tel" id="phone" name="phone" required autocomplete="off" placeholder="Enter Your Phone Number">
-                        </div>
-        
-                        <div class="pass">
-                            <label for="password">Password</label><br>
-                            <input type="password" id="password" name="password" required placeholder="Enter Your Password">
-                            <span>
-                                <i class='bx bx-show' aria-hidden="true" id="eye"></i>
-                            </span>
-                        </div>
-    
-                        <div class="gender">
-                            <div class="male">
-                                <label for="Male">Male</label>
-                                <input type="radio" name="gender" value="Male" id="Male" required>
-                            </div>
-                           <div class="female">
-                                <label for="Female">Female</label>
-                                <input type="radio" name="gender" value="Female" id="Female" required>
+   <div class="main">
+       <div class="sub1">
+           <div class="title">
+               <h1>ComfyNest</h1>
+               <h4>Your Key to Hassle-Free Dormitory Discovery</h4>
+           </div>
+       </div>
+       <div class="sub2">
+           <div class="container">
+               <div class="wrapper">
+                   <form action="DormDetail.html">
+                       <div class="text">
+                           <h2>Sign Up</h1>
+                           <h5>Just some details to get you in.!</h4>
+                       </div>
+  
+                       <div class="row">
+                           <label for="fN">First Name</label><br>
+                           <input type="text" id="fN" required autocomplete="off" placeholder="Enter Your First Name">
+                           <span th:if="${error}" class="hint" style="color: red; font-size: 12px; display: none;">This email is already registered!</span>
+                       </div>
+      
+                       <div class="row">
+                           <label for="lN">Last Name</label><br>
+                           <input type="text" id="lN" required autocomplete="off" placeholder="Enter Your Last Name">
+                           <span th:if="${error}" class="hint" style="color: red; font-size: 12px; display: none;">This email is already registered!</span>
+                       </div>
+      
+                       <div class="row">
+                           <label for="email">E-mail</label><br>
+                           <input type="email" id="email" required novalidate autocomplete="off" placeholder="Enter Your Email">
+                           <span th:if="${error}" class="hint" style="color: red; font-size: 12px;">This email is already registered!</span>
+                       </div>
+                      
+                       <div class="phoneNumber">
+                           <label for="phone">Phone Number</label><br>
+                           <select name="#" class="ph" size="1">
+                               <option value="#" selected>+09</option>
+                               <option value="#" selected>+66</option>
+                               <option value="#">+08</option>
+                           </select>
+                           <input type="tel" id="phone" required autocomplete="off" placeholder="Enter Your Phone Number">
+                           <span th:if="${error}" class="hint" style="color: red; font-size: 12px; display: none;">This email is already registered!</span>
+                       </div>
+      
+                       <div class="pass">
+                           <label for="password">Password</label><br>
+                           <input type="password" id="password" required placeholder="Enter Your Password">
+                           <span class="hide">
+                               <i class='bx bx-show' aria-hidden="true" id="eye"></i>
+                           </span>
+                           <span th:if="${error}" class="hint" style="color: red; font-size: 12px; display: none;">This email is already registered!</span>
+                       </div>
+  
+                       <div class="gender">
+                           <div class="male">
+                               <label for="Male">Male</label>
+                               <input type="radio" name="G" id="Male" required>
                            </div>
-                        </div>
-        
-                        <div class="btn">
-                            <input type="submit" value="Register" id="click">
-                        </div>
-        
-                        <div class="login">Already have an account? <a href="\login">Login</a></div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-        
-    <script src="\static\js\index.js"></script>
+                          <div class="female">
+                               <label for="Female">Female</label>
+                               <input type="radio" name="G" id="Female" required>
+                          </div>
+                       </div>
+      
+                       <div class="btn">
+                           <input type="submit" value="Register" id="click">
+                       </div>
+      
+                       <div class="login">Already have an account? <a href="LoginPage.html">Login</a></div>
+                   </form>
+               </div>
+           </div>
+       </div>
+   </div>
+      
+  
+      
+   <script src="/static/js/index.js"></script>
 </body>
 </html>
+
