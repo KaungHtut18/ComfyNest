@@ -5,10 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dormitory Detail | ComfyNest</title>
-    <link rel="stylesheet" href="/static/css/DormDetail.css">
+    <link rel="stylesheet" href="DormDetail.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
-<body th:object="${dorm}">
+<!-- <body th:object="${dorm}">
     <div class="back">
         <a href="LoginPage.html">
             <i class='bx bx-left-arrow-circle'></i>
@@ -100,5 +101,129 @@
         </div>
     </div>
     
+</body> -->
+<body>
+    <section>
+        <span class="overlay"></span>
+        <span class="overlay1"></span>
+
+    <div class="pop">
+        <h2>How would you recommend this dormitory to others?</h2>
+        <div class="star">
+            <i class="fa-solid fa-star" id="one"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+        </div>
+
+        <div class="btns">
+            <button class="cancel">Cancel</button>
+            <button class="submit">Submit</button>
+        </div>
+    </div>
+
+    <div class="pop1">
+        <div class="question">
+            <img src="Confirm.png" alt="">
+        </div>
+        <h2>Are you sure you want to book this dormitory?</h2>
+
+        <div class="btns">
+            <button class="cancel1">Cancel</button>
+            <button class="booking">Book</button>
+        </div>
+    </div>
+
+    <div class="back">
+        <a href="LoginPage.html">
+            <i class='bx bx-left-arrow-circle'></i>
+        </a>
+    </div>
+
+    <div class="container">
+        <div class="images">
+            <div class="one">
+                <div class="first">
+                    <img th:src="@{/static/images/{fileName}(fileName=${dorm.img1})}" alt="">
+                </div>
+                <div class="second">
+                    <img th:src="@{/static/images/{fileName}(fileName=${dorm.img2})}" alt="">
+                </div>
+            </div>
+            <div class="two">
+                <div class="first">
+                    <img th:src="@{/static/images/{fileName}(fileName=${dorm.img3})}" alt="">
+                </div>
+                <div class="second">
+                    <img th:src="@{/static/images/{fileName}(fileName=${dorm.img4})}" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="info">
+            <div class="header">
+                <div class="name">
+                    <h2 th:text="${dorm.name}"></h2>
+                </div>
+                <div class="rating">
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                    <div class="aval" th:if="{dorm.fullyBooked}">
+                        Full
+                    </div>
+                    <div class="aval" th:if="{dorm.fullyBooked=false}">
+                        Available
+                    </div>
+                </div>
+            </div>
+            <div class="detail">
+                <div class="list">
+                    <!-- <div class="row"><i class='bx bx-money'></i> ฿ 3500/month</div>
+                    <div class="row"><i class='bx bx-male-female'></i>Unisex</div>
+                    <div class="row"><i class='bx bxs-map'></i>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus</div>
+                    <div class="row"><i class='bx bxs-phone' ></i>0123456789</div>
+                    <div class="row"><i class='bx bxs-envelope' ></i>mileycyrus123@gmail.com</div> -->
+                   
+                    <ul class="row">
+                        <li><i class='bx bx-money'></i> ฿ <span th:text="${dorm.price}"></span>/month</li>
+                        <li><i class='bx bx-male-female'></i><span th:text="${dorm.gender}"></span></li>
+                        <li><i class='bx bxs-map'></i><span th:text="${location}"> Lorem, ipsum dolor sit amet consectetur adipisicing elit</span></li>
+                        <li><i class='bx bxs-phone'></i><span th:text="${phone}">0123456789</span></li>
+                        <li><i class='bx bxs-envelope'></i><span th:text="${dorm.email}"></span></li>
+                    </ul>
+                </div>
+                <div class="text">
+                    <div class="api"></div><br>
+                    <div class="row" >
+                        <span th:text="${dorm.description}"></span>
+                    </div><br>
+                    <div class="row">
+                        <span th:text="${dorm.Amenties}"></span>
+                    </div><br>
+                    <div class="row">
+                        <span th:text="${dorm.rules}"></span>
+                    </div>
+                </div>
+            </div><br>
+            <div class="btns">
+                <div class="but">
+                    <button class="wish" >Add to Wishlist</button>
+                    <button class="wish" id="rate">Rate This Dormitory  <i class="fa-solid fa-star"></i></button>
+                </div>
+                <div class="ton">
+                    <button class="book" id="btn">Book</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+    
+    <script src="overlay.js" defer></script>
 </body>
+
 </html>
