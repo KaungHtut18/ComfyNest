@@ -1,89 +1,94 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;1,300&family=Poppins:wght@300;400;500;600&family=Roboto&display=swap');
 
+
 *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', 'sans-serif';
-    color: #a47148;
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: 'Poppins', 'sans-serif';
+   color: #a47148;
 }
 body{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+   position: relative;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 .container{
-    width: 546px;
-    height: auto;
-    border-radius: 20px;
-    margin-top: 8.5%;
-    box-shadow: 0px 18px 40px -12px rgb(142, 140, 140);
-    padding: 40px;
-    justify-content: center;
-    align-items: center;
+   width: 546px;
+   height: auto;
+   border-radius: 20px;
+   margin-top: 8.5%;
+   box-shadow: 0px 18px 40px -12px rgb(142, 140, 140);
+   padding: 40px;
+   justify-content: center;
+   align-items: center;
 }
 .back{
-    position: fixed;
-    top: 1%;
-    left: 0.2%;
+   position: fixed;
+   top: 1%;
+   left: 0.2%;
 }
 .back i{
-    font-size: 40px;
-    color: #a47145;
+   font-size: 40px;
+   color: #a47145;
 }
 .container .pfp{
-    width: 100%;
-    height: 40%;
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+   width: 100%;
+   height: 40%;
+   margin-bottom: 20px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 .container .info{
-    display: flex;
-    width: 466px;
-    height: auto;
-    border-radius: 10px;
-    background-color: #ffedd8;
-    padding: 20px;
-    font-size: 18px;
-    margin-bottom: 20px;
+   display: flex;
+   width: 466px;
+   height: auto;
+   border-radius: 10px;
+   background-color: #ffedd8;
+   padding: 20px;
+   font-size: 18px;
+   margin-bottom: 20px;
 }
 .container .info .field{
-    margin-right: 60px;
+   margin-right: 60px;
 }
 .container .info .field div{
-    margin-bottom: 20px;
+   margin-bottom: 20px;
 }
 .container .info .field .sub{
-    margin-bottom: 0px;
+   margin-bottom: 0px;
 }
 .container .logout{
-    width: 100%;
+   width: 100%;
 }
 .container .logout .btn{
-    text-decoration: none;
-    width: 100%;
-    height: 56px;
-    background-color: #f35625;
-    border: none;
-    color: white;
-    border-radius: 8px;
-    font-size: 18px;
-    cursor: pointer;
+   text-decoration: none;
+   width: 100%;
+   height: 56px;
+   background-color: #f35625;
+   border: none;
+   color: white;
+   border-radius: 8px;
+   font-size: 18px;
+   cursor: pointer;
 }
 .container .logout .btn:hover{
-    background-color: #c2451e;
+   background-color: #c2451e;
 }
 .container .info .value .row{
-    list-style-type: none;
-   
+   list-style-type: none;
+ 
 }
 .container .info .value .row li{
-    margin-bottom: 20px;
+   margin-bottom: 20px;
 }
 .container .info .value .row .sub{
-    margin-bottom: 0px;
+   margin-bottom: 0px;
 }
+
+
+
+
 

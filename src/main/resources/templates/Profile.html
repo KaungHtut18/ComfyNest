@@ -4,14 +4,16 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="/static/css/Profile.css">
    <title>Profile | ComfyNest</title>
+   <!-- CSS -->
+   <link rel="stylesheet" href="/static/css/Profile.css">
+   <!-- boxicons -->
    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
-<body th:object="${tenant}">
+<body>
    <abbr title="#">
        <div class="back">
-           <a href="\home">
+           <a href="Dorm.html">
                <i class='bx bx-left-arrow-circle'></i>
            </a>
        </div>
@@ -29,10 +31,18 @@
                <div class="sub">Phone Number</div>
            </div>
            <div class="value">
-               <div th:text="${tenant.firstName}"></div>
-               <div th:text="${tenant.lastName}"></div>
-               <div th:text="${tenant.email}"></div>
-               <div class="sub" th:text="${tenant.phone}"></div>
+               <!-- <div>John</div>
+               <div>Miller</div>
+               <div>johnmiller123@gmail.com</div>
+               <div class="sub">09123456789</div> -->
+
+
+               <ul class="row">
+                   <li th:text="${tenant.firstName}"></li>
+                   <li th:text="${tenant.lastName}"></li>
+                   <li th:text="${tenant.email}"></li>
+                   <li th:text="${tenant.phone}" class="sub"></li>
+               </ul>
            </div>
        </div>
        <div class="logout">
