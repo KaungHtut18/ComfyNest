@@ -4,11 +4,11 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="src/main/resources/static/css/Profile.css">
+   <link rel="stylesheet" href="/static/css/Profile.css">
    <title>Profile | ComfyNest</title>
    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
-<body>
+<body th:object="${tenant}">
    <abbr title="#">
        <div class="back">
            <a href="DormDetail.html">
@@ -19,7 +19,7 @@
   
    <div class="container">
        <div class="pfp">
-           <img src="src/main/resources/static/images/profilePicture.png" alt="">
+           <img src="/static/images/profilePicture.png" alt="">
        </div>
        <div class="info">
            <div class="field">
@@ -29,10 +29,10 @@
                <div class="sub">Phone Number</div>
            </div>
            <div class="value">
-               <div>John</div>
-               <div>Miller</div>
-               <div>johnmiller123@gmail.com</div>
-               <div class="sub">09123456789</div>
+               <div th:text="${tenant.firstName}"></div>
+               <div th:text="${tenant.lastName}"></div>
+               <div th:text="${tenant.email}"></div>
+               <div class="sub" th:text="${tenant.phone}"></div>
            </div>
        </div>
        <div class="logout">

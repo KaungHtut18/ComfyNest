@@ -137,17 +137,23 @@ public class TenantController {
    @GetMapping("/dorm/{id}")
    public String showDormDetail(@PathVariable int id, Model model)
    {
-        Landlord land = new Landlord("owner@gmail.com", "Owner", "Man", "12345667");
-        Rating r = new Rating(1, 0, 0, 3, 0, 0, 0);
-        Dormitory d = new Dormitory(1,r,"3K","we live here","Chiang rai",3000,"unisex",false,"Some desc fajkhfaohfijewahf;oijajgf;oierjhgiersj ofijreafkgsajf;ljksdf g;kjhr;oihag oe","Some rules","We provide these kjg;oirewhagpoihaeofjaw rhpwo oihiuh ioh oiigh poerhaiguh aiwurehg iwah  weh","3K1.JPG","3K2.JPG","3K3.JPG","3K4.JPG","owner@gmail.com",land);
-        //int dormId = (Integer)id;
-        //Dormitory dorm = dormRepo.findById(dormId).get();
-        //Landlord l= landLordRepo.findById(dorm.getLandlord().getEmail()).get();
-        String phone = land.getTelephone();
-        model.addAttribute("dorm", d);
+        //Landlord land = new Landlord("owner@gmail.com", "Owner", "Man", "12345667");
+        //Rating r = new Rating(1, 0, 0, 3, 0, 0, 0);
+        //Dormitory d = new Dormitory(1,r,"3K","we live here","Chiang rai",3000,"unisex",false,"Some desc fajkhfaohfijewahf;oijajgf;oierjhgiersj ofijreafkgsajf;ljksdf g;kjhr;oihag oe","Some rules","We provide these kjg;oirewhagpoihaeofjaw rhpwo oihiuh ioh oiigh poerhaiguh aiwurehg iwah  weh","3K1.JPG","3K2.JPG","3K3.JPG","3K4.JPG","owner@gmail.com",land);
+        int dormId = (Integer)id;
+        Dormitory dorm = dormRepo.findById(dormId).get();
+        Landlord l= landLordRepo.findById(dorm.getLandlord().getEmail()).get();
+        String phone = l.getTelephone();
+        model.addAttribute("dorm", dorm);
         model.addAttribute("phone", phone);
 
         return "DormDetail";
+   }
+   @GetMapping("/userDetail")
+   public String showUserDetail(Model model)
+   {
+        model.addAttribute("tenant", tenant);
+        return "Profile";
    }
    //TODO: add functions for searching, user account page
     
