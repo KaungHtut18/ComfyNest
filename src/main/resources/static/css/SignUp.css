@@ -1,195 +1,198 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;1,300&family=Poppins:wght@300;400;500;600&family=Roboto&display=swap');
 
+
 *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', 'sans-serif';
-    color: #25272c;
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: 'Poppins', 'sans-serif';
+   color: #25272c;
 }
 body{
-    background: url(/static/images/SignUp.JPG) no-repeat center fixed;
-    background-size: cover;
+   background: url(/static/images/SignUp.JPG) no-repeat center fixed;
+   background-size: cover;
 }
 .main{
-    position: relative;
-    display: flex;
+   position: relative;
+   display: flex;
 }
 .main .sub1{
-    display: flex;
-    width: 50%;
-    justify-content: center;
-    margin-top: 10%;
+   display: flex;
+   width: 50%;
+   justify-content: center;
+   margin-top: 10%;
 }
 .main .sub2{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-    height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 50%;
+   height: 100vh;
 }
 .title h4{
-    color: #a47145;
-    letter-spacing: 1px;
-    font-weight: 400;
-    margin-top: -8px;
+   color: #a47145;
+   letter-spacing: 1px;
+   font-weight: 400;
+   margin-top: -8px;
 }
 .title h1{
-    font-size: 60px;
-    color: #a47145;
+   font-size: 60px;
+   color: #a47145;
 }
 .container{
-    width: 440px;
-    border-radius: 10px;
-    padding: 0px 20px;
+   width: 440px;
+   border-radius: 10px;
+   padding: 0px 20px;
 }
 .container .wrapper{
-    width: 100%;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px 1px rgb(148, 147, 147);
+   width: 100%;
+   background-color: white;
+   border-radius: 10px;
+   box-shadow: 0px 4px 10px 1px rgb(148, 147, 147);
 }
 .wrapper form{
-    padding: 30px 25px 30px 25px;
+   padding: 30px 25px 30px 25px;
 }
 .wrapper .text{
-    margin-bottom: 20px;
+   margin-bottom: 20px;
 }
 .wrapper .text h2{
-    font-size: 26px;
-    font-weight: 400;
+   font-size: 26px;
+   font-weight: 400;
 }
 .wrapper .text h4{
-    font-size: 12px;
-    font-weight: 400;
+   font-size: 12px;
+   font-weight: 400;
 }
 .wrapper form .row{
-    position: relative;
-    height: 45px;
-    margin-bottom: 30px;
+   position: relative;
+   height: 45px;
+   margin-bottom: 30px;
 }
 .wrapper form .phoneNumber{
-    position: relative;
-    height: 45px;
-    margin-bottom: 30px;
+   position: relative;
+   height: 45px;
+   margin-bottom: 30px;
 }
 .wrapper form .phoneNumber input{
-    font-size: 16px;
-    width: 68.5%;
-    height: 100%;
-    border-radius: 10px;
-    outline: none;
-    padding-left: 10px;
-    border: 1px solid rgb(152, 149, 149);
-}
-.wrapper form .pass{
-    position: relative;
-    height: 45px;
-    margin-bottom: 40px;
-}
-.wrapper form .pass input{
-    font-size: 16px;
-    box-sizing: border-box;
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    outline: none;
-    padding-left: 10px;
-    border: 1px solid rgb(152, 149, 149);
-}
-.wrapper form .pass span{
-    position: absolute;
-    top: 105%;
-    right: 15px;
-    transform: translate(0, -50%);
-    cursor: pointer;
-}
-.wrapper form .pass span i{
-    font-size: 20px;
-    color: rgb(152, 149, 149);
-}
-.wrapper form .row input{
-    font-size: 16px;
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    outline: none;
-    padding-left: 10px;
-    border: 1px solid rgb(152, 149, 149);
-}
-.wrapper form .row input:focus{
-    box-shadow: inset 0px 0px 2px 2px rgb(237, 233, 233);
-}
-.wrapper form .btn{
-    margin-bottom: 20px;
-    margin-top: 20px;
-}
-.wrapper form .btn input{
-    font-size: 16px;
-    width: 100%;
-    padding: 12px 0px;
-    border-radius: 10px;
-    border: none;
-    color: white;
-    background-color: #a47145;
-    cursor: pointer;
-}
-.wrapper form .btn input:hover{
-    background-color:#845b37;
-}
-.wrapper form .login{
-    text-align: center;
-}
-.wrapper form .login a{
-    text-decoration: none;
-    color: #25272c;;
-}
-.wrapper form .login a:hover{
-    text-decoration: underline;
-}
-.wrapper form input::placeholder{
-    font-size: 14px;
-    color: rgb(193, 189, 189);
-}
-.wrapper form label{
-    font-size: 14px;
-    font-weight: 500;
-}
-.wrapper form .phoneNumber .ph{
-    width: 30%;
-    height: 100%;
-    border-radius: 10px;
-    outline: none;
-    border: 1px solid rgb(152, 149, 149);
-    padding-left: 15px;
-    cursor: pointer;
-}
-.wrapper form .phoneNumber .ph:hover{
-    background: rgb(187, 186, 186);
-}
-.wrapper form .gender{
-    display: flex;
-    justify-content: start;
-    margin-left: 5px;
-}
-.wrapper form .gender .male{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 16px;
-}
-.wrapper form .gender label{
-    margin-right: 8px;
-}
-.wrapper form .gender .female{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 16px;
-}
-.wrapper form .pass input:focus{
-    box-shadow: inset 0px 0px 2px 2px rgb(237, 233, 233);
+   font-size: 16px;
+   width: 68.5%;
+   height: 100%;
+   border-radius: 10px;
+   outline: none;
+   padding-left: 10px;
+   border: 1px solid rgb(152, 149, 149);
 }
 .wrapper form .phoneNumber input:focus{
-    box-shadow: inset 0px 0px 2px 2px rgb(237, 233, 233);
+   box-shadow: inset 0px 0px 2px 2px rgb(237, 233, 233);
 }
+.wrapper form .pass{
+   position: relative;
+   height: 45px;
+   margin-bottom: 30px;
+}
+.wrapper form .pass input{
+   font-size: 16px;
+   box-sizing: border-box;
+   width: 100%;
+   height: 100%;
+   border-radius: 10px;
+   outline: none;
+   padding-left: 10px;
+   border: 1px solid rgb(152, 149, 149);
+}
+.wrapper form .pass input:focus{
+   box-shadow: inset 0px 0px 2px 2px rgb(237, 233, 233);
+}
+.wrapper form .pass span{
+   position: absolute;
+   top: 110%;
+   right: 15px;
+   transform: translate(0, -50%);
+   cursor: pointer;
+}
+.wrapper form .pass span i{
+   font-size: 20px;
+   color: rgb(152, 149, 149);
+}
+.wrapper form .row input{
+   font-size: 16px;
+   width: 100%;
+   height: 100%;
+   border-radius: 10px;
+   outline: none;
+   padding-left: 10px;
+   border: 1px solid rgb(152, 149, 149);
+}
+.wrapper form .row input:focus{
+   box-shadow: inset 0px 0px 2px 2px rgb(237, 233, 233);
+}
+.wrapper form .btn{
+   margin-bottom: 20px;
+   margin-top: 15px;
+}
+.wrapper form .btn input{
+   font-size: 16px;
+   width: 100%;
+   padding: 12px 0px;
+   border-radius: 10px;
+   border: none;
+   color: white;
+   background-color: #a47145;
+   cursor: pointer;
+}
+.wrapper form .btn input:hover{
+   background-color:#845b37;
+}
+.wrapper form .login{
+   text-align: center;
+}
+.wrapper form .login a{
+   text-decoration: none;
+   color: #25272c;;
+}
+.wrapper form .login a:hover{
+   text-decoration: underline;
+}
+.wrapper form input::placeholder{
+   font-size: 14px;
+   color: rgb(193, 189, 189);
+}
+.wrapper form label{
+   font-size: 14px;
+   font-weight: 500;
+}
+.wrapper form .phoneNumber .ph{
+   width: 30%;
+   height: 100%;
+   border-radius: 10px;
+   outline: none;
+   border: 1px solid rgb(152, 149, 149);
+   padding-left: 15px;
+   cursor: pointer;
+}
+.wrapper form .phoneNumber .ph:hover{
+   background: rgb(187, 186, 186);
+}
+.wrapper form .gender{
+   display: flex;
+   justify-content: start;
+   margin-left: 5px;
+   margin-top: 40px;
+}
+.wrapper form .gender .male{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-right: 16px;
+}
+.wrapper form .gender label{
+   margin-right: 8px;
+}
+.wrapper form .gender .female{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-left: 16px;
+}
+

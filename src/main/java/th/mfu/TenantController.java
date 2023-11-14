@@ -58,12 +58,6 @@ public class TenantController {
         this.wishListRepository = wishListRepository;
     }
 
-    @GetMapping("/index")
-    public String start()
-    {
-        return "login";
-    }
-
     @GetMapping("/")
     public String goToLogin()
     {
@@ -107,6 +101,7 @@ public class TenantController {
     @RequestParam String phone,
     @RequestParam String password,
     @RequestParam String gender,
+    @RequestParam String region,
     RedirectAttributes re) 
     {
         //TODO: store the user data in the database
@@ -118,7 +113,8 @@ public class TenantController {
         }
         else
         {
-            Tenant t = new Tenant(firstName, lastName, email, gender, phone, password);
+            String ph=region+phone;
+            Tenant t = new Tenant(firstName, lastName, email, gender, ph, password);
             tenantRepository.save(t);
             tenant=t;
             return "redirect:/home";
