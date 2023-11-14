@@ -142,7 +142,7 @@ public class TenantController {
         String phone = l.getTelephone();
         model.addAttribute("dorm", dorm);
         model.addAttribute("phone", phone);
-
+        model.addAttribute("rating", 3);
         return "DormDetail";
    }
    @GetMapping("/userDetail")

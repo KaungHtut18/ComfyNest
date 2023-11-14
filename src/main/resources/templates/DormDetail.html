@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dormitory Detail | ComfyNest</title>
-    <link rel="stylesheet" href="DormDetail.css">
+    <link rel="stylesheet" href="/static/css/DormDetail.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
@@ -102,7 +102,7 @@
     </div>
     
 </body> -->
-<body>
+<body th:object="${dorm}">
     <section>
         <span class="overlay"></span>
         <span class="overlay1"></span>
@@ -110,6 +110,7 @@
     <div class="pop">
         <h2>How would you recommend this dormitory to others?</h2>
         <div class="star">
+            <i class="fa-solid fa-star"></i>
             <i class="fa-solid fa-star" id="one"></i>
             <i class="fa-solid fa-star"></i>
             <i class="fa-solid fa-star"></i>
@@ -125,7 +126,7 @@
 
     <div class="pop1">
         <div class="question">
-            <img src="Confirm.png" alt="">
+            <img src="/static/images/Confirm.png" alt="">
         </div>
         <h2>Are you sure you want to book this dormitory?</h2>
 
@@ -141,7 +142,7 @@
         </a>
     </div>
 
-    <div class="container">
+    <div class="container" >
         <div class="images">
             <div class="one">
                 <div class="first">
@@ -166,19 +167,17 @@
                     <h2 th:text="${dorm.name}"></h2>
                 </div>
                 <div class="rating">
-                    <div class="stars">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
+                    <div class="stars" th:with="maxStars=5, fullStars=${#numbers.sequence(1, rating)}">
+                        <span th:each="star : ${fullStars}" class="star"><i class="fa-solid fa-star"></i></span>
+                        <span th:each="star : ${#numbers.sequence(rating + 1, maxStars)}"><i class="fa-regular fa-star"></i></span>
+                        
                     </div>
-                    <div class="aval" th:if="{dorm.fullyBooked}">
+                    <span th:if="${dorm.fullyBooked}" class="aval">
                         Full
-                    </div>
-                    <div class="aval" th:if="{dorm.fullyBooked=false}">
+                    </span>
+                    <span th:if="${dorm.fullyBooked= false }" class="aval">
                         Available
-                    </div>
+                    </span  >
                 </div>
             </div>
             <div class="detail">
@@ -223,7 +222,7 @@
     </div>
     </section>
     
-    <script src="overlay.js" defer></script>
+    <script src="/static/js/overlay.js" defer></script>
 </body>
 
 </html>

@@ -90,5 +90,12 @@ public class Rating
     public void setZeroCount(int zeroCount) {
         this.zeroCount = zeroCount;
     }
-    
+    public int calcRating()
+    {
+        int totalCount=OneCount+twoCount+threeCount+fourCount+fiveCount+zeroCount;
+        if(totalCount==0)
+            return 0;
+        
+        return (1*OneCount+2*twoCount+3*threeCount+4*fourCount+5*fiveCount)/totalCount;
+    }
 }

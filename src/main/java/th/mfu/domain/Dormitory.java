@@ -56,18 +56,16 @@ public class Dormitory {
         this.email = email;
         this.landlord = landlord;
     }
-
+    public Dormitory()
+    {
+        
+    }
     public Landlord getLandlord() {
         return landlord;
     }
 
     public void setLandlord(Landlord landlord) {
         this.landlord = landlord;
-    }
-
-    public Dormitory(int i, int j, String string, String string2, String string3, int k, String string4, boolean b, String string5, String string6, String string7, String string8, String string9, String string10)
-    {
-
     }
 
     public String getImg1() {
