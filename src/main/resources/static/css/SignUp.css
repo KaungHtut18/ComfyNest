@@ -67,12 +67,12 @@ body{
 .wrapper form .row{
    position: relative;
    height: 45px;
-   margin-bottom: 45px;
+   margin-bottom: 30px;
 }
 .wrapper form .phoneNumber{
    position: relative;
    height: 45px;
-   margin-bottom: 45px;
+   margin-bottom: 30px;
 }
 .wrapper form .phoneNumber input{
    font-size: 16px;
@@ -89,7 +89,7 @@ body{
 .wrapper form .pass{
    position: relative;
    height: 45px;
-   margin-bottom: 45px;
+   margin-bottom: 30px;
 }
 .wrapper form .pass input{
    font-size: 16px;
@@ -104,14 +104,14 @@ body{
 .wrapper form .pass input:focus{
    box-shadow: inset 0px 0px 2px 2px rgb(237, 233, 233);
 }
-.wrapper form .pass .hide{
+.wrapper form .pass span{
    position: absolute;
    top: 110%;
    right: 15px;
    transform: translate(0, -50%);
    cursor: pointer;
 }
-.wrapper form .pass .hide i{
+.wrapper form .pass span i{
    font-size: 20px;
    color: rgb(152, 149, 149);
 }
@@ -129,7 +129,7 @@ body{
 }
 .wrapper form .btn{
    margin-bottom: 20px;
-   margin-top: 20px;
+   margin-top: 15px;
 }
 .wrapper form .btn input{
    font-size: 16px;
@@ -178,6 +178,7 @@ body{
    display: flex;
    justify-content: start;
    margin-left: 5px;
+   margin-top: 40px;
 }
 .wrapper form .gender .male{
    display: flex;
