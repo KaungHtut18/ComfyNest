@@ -17,3 +17,10 @@ INSERT INTO DORMITORY (
 
 
 -- Insert sample data into RATING table
+INSERT INTO Tenant (email, firstName, lastName, gender, phone, password)
+VALUES
+    ('admin@comfynest.com', 'admin', 'admin', 'Male', '+999999999', '$2a$10$FWzfSNCwpsgxDfvxXkEhMOmBuwimTkhgyjRVvcQXuKgzWlvlNrbYu'); -- Password is "password1"
+
+INSERT INTO WishList(tenant_email, dormitory_id)
+VALUES
+    ('admin@comfynest.com',1);

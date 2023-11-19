@@ -11,6 +11,7 @@
 <body>
    <abbr title="#">
        <div class="back">
+        <!-- still need to wire back -->
            <a href="DormDetail.html">
                <i class='bx bx-left-arrow-circle'></i>
            </a>
@@ -24,44 +25,22 @@
                </tr>
            </thead>
            <tbody>
-               <tr>
+               
+               <tr th:each="dorm : ${dormList}">
                    <td class="row">
-                       <div class="name">
-                           Regent Mansion
+                       <div class="name" th:text="${dorm.name}">
                        </div>
                        <div class="btn">
-                           <i class='bx bx-trash'></i>
-                           <a href="#"><button type="button" class="see">See More</button></a>
+                           <i class='bx bx-trash'><a th:href="@{'/remove/' + ${dorm.id}}"></a></i>
+                           <a th:href="@{'/dorm/' + ${dorm.id}}"><button type="button" class="see">See More</button></a>
                            <a href="#"><button type="button" class="book">Book</button></a>
                        </div>
                    </td>
                </tr>
-               <tr>
-                   <td class="row">
-                       <div class="name">
-                           STK Resort
-                       </div>
-                       <div class="btn">
-                           <i class='bx bx-trash'></i>
-                           <a href="#"><button type="button" class="see">See More</button></a>
-                           <a href="#"><button type="button" class="book">Book</button></a>
-                       </div>
-                   </td>
-               </tr>
-               <tr>
-                   <td class="row">
-                       <div class="name">
-                           3K Nang Lae
-                       </div>
-                       <div class="btn">
-                           <i class='bx bx-trash'></i>
-                           <a href="#"><button type="button" class="see">See More</button></a>
-                           <a href="#"><button type="button" class="book">Book</button></a>
-                       </div>
-                   </td>
-               </tr>
-           </tbody>
-       </table>
+               
+           </tbody >
+       </table >
+       
    </div>
 </body>
 </html>

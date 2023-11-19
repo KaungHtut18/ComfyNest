@@ -81,6 +81,11 @@
         <version>6.1.2</version>
     </dependency>
 
+    <!-- <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-security</artifactId>
+    </dependency> -->
+
      <!-- Add CloudSQL Starter for MySQL -->
      <!-- <dependency>
         <groupId>com.google.cloud</groupId>

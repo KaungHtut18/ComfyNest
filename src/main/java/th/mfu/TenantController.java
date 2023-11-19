@@ -3,11 +3,14 @@ package th.mfu;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +28,7 @@ import th.mfu.domain.Dormitory;
 import th.mfu.domain.Landlord;
 import th.mfu.domain.Rating;
 import th.mfu.domain.Tenant;
+import th.mfu.domain.WishList;
 
 
 @Controller
@@ -57,30 +61,50 @@ public class TenantController {
         this.ratingRepository = ratingRepository;
         this.wishListRepository = wishListRepository;
     }
+    private Boolean hasSession(HttpSession session)
+    {
+        if (session != null) {
+            if(session.getAttribute("username")!=null)
+            {
+                tenant = tenantRepository.findByEmail(session.getAttribute("username").toString()).get();
+                return true;
+            }
+        }
+        return false;
+    }
 
     @GetMapping("/")
-    public String goToLogin()
+    public String goToLogin(HttpSession session)
     {
+        if(hasSession(session))
+            return "redirect:/home";
         return "Login";
     }
 
     @PostMapping("/login")
-    public String validate(@RequestParam String email, @RequestParam String password,RedirectAttributes re)
+    public String validate(@RequestParam String email, @RequestParam String password,RedirectAttributes re,@RequestParam(value = "rememberMe", defaultValue = "false") boolean rememberMe,
+                            HttpSession session)
     {
         //TODO: get data from the web page, encrypt password and match with the database to validate
+        if(hasSession(session))
+            return "redirect:/home";
         Tenant temp;
         try
         {
+            
             temp = tenantRepository.findById(email).get();
-            if(pwEncoder.matches(password, temp.getPassword()))
-        {
-            tenant=temp;
-            return "redirect:/home";
-        }
-        else{
-            re.addFlashAttribute("error", true);
-            return "redirect:/";
-        }
+            if(pwEncoder.matches(password, temp.getPassword()))   
+                {
+                    tenant=temp;
+                    if (rememberMe) {
+                        session.setAttribute("username", email);
+                    }
+                    return "redirect:/home";
+                }
+            else{
+                re.addFlashAttribute("error", true);
+                return "redirect:/";
+            }
         }catch(NoSuchElementException e)
         {
             re.addFlashAttribute("error", true);
@@ -114,7 +138,8 @@ public class TenantController {
         else
         {
             String ph=region+phone;
-            Tenant t = new Tenant(firstName, lastName, email, gender, ph, password);
+            String encodedPw = pwEncoder.encode(password);
+            Tenant t = new Tenant(firstName, lastName, email, gender, ph, encodedPw);
             tenantRepository.save(t);
             tenant=t;
             return "redirect:/home";
@@ -122,10 +147,15 @@ public class TenantController {
     }
 
    @GetMapping("/home")
-   public String home(Model model)
+   public String home(Model model,HttpSession session)
    {
         model.addAttribute("error", true);
         model.addAttribute("tenants", tenant);
+        if (hasSession(session)) {
+            model.addAttribute("hasSession", "true");
+        }
+        else
+        model.addAttribute("hasSession", "false");
         //TODO: get the user detail and display the data of dorms with 10 results per page
         return "home";
    }
@@ -151,6 +181,35 @@ public class TenantController {
         model.addAttribute("tenant", tenant);
         return "Profile";
    }
+   @GetMapping("/logout")
+   public String logout(HttpSession session)
+   {
+        if (hasSession(session)) {
+            session.invalidate();
+        }
+        return "/";
+   }
    //TODO: add functions for searching, user account page
-    
+    @GetMapping("/wishlist")
+    public String wishlist(Model model)
+    {
+        ArrayList<Dormitory> dorms = new ArrayList<>();
+        for (WishList item : wishListRepository.findByTenant(tenant)) {
+            dorms.add(item.getDormitory());
+        }
+        // for (Dormitory dorm: dorms)
+        // {
+        //     System.out.println(dorm.getName());
+        // }
+        model.addAttribute("dormList", dorms);
+        return "WishList";
+    }
+
+    @GetMapping("/remove/{dorm}")
+    @Transactional
+    public String removeItem(@PathVariable Dormitory dorm)
+    {
+        wishListRepository.deleteByDormitory(dorm);
+        return "redirect:/wishlist";
+    }
 }
