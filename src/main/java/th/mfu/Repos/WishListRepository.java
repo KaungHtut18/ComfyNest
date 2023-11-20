@@ -11,4 +11,5 @@ import java.util.List;
 public interface WishListRepository extends CrudRepository<WishList, String> {
     List<WishList> findByTenant(Tenant tenant);
     void deleteByDormitory(Dormitory dormitory);
+    List<WishList> findByDormitoryAndTenant(Dormitory dormitory, Tenant tenant);
 }

@@ -204,7 +204,21 @@ public class TenantController {
         model.addAttribute("dormList", dorms);
         return "WishList";
     }
-
+    @GetMapping("/add/{id}")
+    public String addToWishList(@PathVariable int id)
+    {
+        String path = "/dorm/"+id;
+        path.trim();
+        WishList wish = new WishList();
+        wish.setDormitory(dormRepo.findById(id).get());
+        wish.setTenant(tenant);
+        for (WishList list : wishListRepository.findByDormitoryAndTenant(wish.getDormitory(), tenant)) {
+            if (wish.equals(list))
+                return path;
+        }
+        wishListRepository.save(wish);
+        return path;
+    }
     @GetMapping("/remove/{dorm}")
     @Transactional
     public String removeItem(@PathVariable Dormitory dorm)
