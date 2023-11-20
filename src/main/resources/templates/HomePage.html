@@ -58,7 +58,7 @@
 </div>
 </div> -->
 <div class="searchbar">
-<form action="Dorm.html" method="GET" class="bar" id="searchForm">
+<form action="/search" method="post" class="bar" id="searchForm">
 <input type="text" name="dormitoryName" placeholder="Dormitory's name" autocomplete="off">
 <!-- <input type="submit" value="Search" class="searchbtn"> -->
 <i class="fa-solid fa-magnifying-glass searchbtn" ></i>
@@ -78,162 +78,56 @@
 </div>
 </div>
 </div>
-<div class="dorms">
+<div class="dorms" th:each="dorm : ${dormList}">
 <div class="cover" style="padding: 30px 0px 0px 0px; display: flex; flex-direction: column; justify-content:center; align-items: center;">
 <div class="stk">
 <div class="image">
-<img src="STK1.JPG" alt="">
+<img th:src="@{'/static/images/'+${dorm.img1}}" alt="">
 </div>
 <div class="info">
 <div class="dormName">
 <div class="name">
-<h3 style="font-weight: 300; font-size: 22px;">STK Resort</h3>
-<i id="heartIcon" class='bx bx-heart show-hide' ></i>
+<h3 style="font-weight: 300; font-size: 22px;" th:text="${dorm.name}">STK Resort</h3>
+<a th:href="@{'/addfav'+${dorm.id}}"><i id="heartIcon" class='bx bx-heart show-hide' ></i></a>
 </div>
 <div class="rating">
-<div class="stars">
-<i class="fa-solid fa-star"></i>
-<i class="fa-solid fa-star"></i>
-<i class="fa-solid fa-star"></i>
-<i class="fa-regular fa-star"></i>
-<i class="fa-regular fa-star"></i>
-</div>
+    <div class="stars" th:with="maxStars=5, fullStars=${#numbers.sequence(1, dorm.rating.calcRating())}">
+        <span th:each="star : ${fullStars}" class="star"><i class="fa-solid fa-star"></i></span>
+        <span th:each="star : ${#numbers.sequence(dorm.rating.calcRating() + 1, maxStars)}"><i class="fa-regular fa-star"></i></span>
+        
+    </div>
+    <span th:if="${dorm.fullyBooked}" class="aval">
+        Full
+    </span>
+    <span th:if="${dorm.fullyBooked= false }" class="aval">
+        Available
+    </span  >
 <div class="aval">
-Available
+    <span th:if="${dorm.fullyBooked}" class="aval">
+        Full
+    </span>
+    <span th:if="${dorm.fullyBooked= false }" class="aval">
+        Available
+    </span  >
 </div>
 </div>
 </div>
 <div class="detail">
 <ul class="row">
-<li><i class='bx bx-money'></i> ฿ 3500/month</li>
-<li><i class='bx bx-male-female'></i>Unisex</li>
-<li><i class='bx bxs-map'></i>Lorem, ipsum dolor sit amet consectetur adipisicing elit</li>
-<li><i class='bx bxs-phone' ></i>0123456789</li>
-<li><i class='bx bxs-envelope' ></i>mileycyrus123@gmail.com</li>
+<li><i class='bx bx-money'></i> ฿ <span th:text="${dorm.price}"></span>/month</li>
+<li><i class='bx bx-male-female'></i><span th:text="${dorm.gender}"></span></li>
+<li><i class='bx bxs-map'></i><span th:text="${dorm.location}"></span></li>
+<li><i class='bx bxs-phone' ></i><span th:text="${dorm.landlord.telephone}"></span></li>
+<li><i class='bx bxs-envelope' ></i><span th:text="${dorm.email}"></span></li>
 </ul>
 </div>
 <div class="buttons">
-<button class="see" >See More</button>
+<a th:href="@{'/dorm/'+${dorm.id}}"><button class="see" >See More</button></a>
 <button class="book">Book</button>
 </div>
 </div>
 </div>
-<div class="stk">
-<div class="image">
-<img src="STK1.JPG" alt="">
-</div>
-<div class="info">
-<div class="dormName">
-<div class="name">
-<h3 style="font-weight: 300; font-size: 22px;">STK Resort</h3>
-<i id="heartIcon" class='bx bx-heart show-hide' ></i>
-</div>
-<div class="rating">
-<div class="stars">
-<i class="fa-solid fa-star"></i>
-<i class="fa-solid fa-star"></i>
-<i class="fa-solid fa-star"></i>
-<i class="fa-regular fa-star"></i>
-<i class="fa-regular fa-star"></i>
-</div>
-<div class="aval">
-Available
-</div>
-</div>
-</div>
-<div class="detail">
-<ul class="row">
-<li><i class='bx bx-money'></i> ฿ 3500/month</li>
-<li><i class='bx bx-male-female'></i>Unisex</li>
-<li><i class='bx bxs-map'></i>Lorem, ipsum dolor sit amet consectetur adipisicing elit</li>
-<li><i class='bx bxs-phone' ></i>0123456789</li>
-<li><i class='bx bxs-envelope' ></i>mileycyrus123@gmail.com</li>
-</ul>
-</div>
-<div class="buttons">
-<button class="see" >See More</button>
-<button class="book">Book</button>
-</div>
-</div>
-</div>
-<div class="stk">
-<div class="image">
-<img src="3K1.JPG" alt="">
-</div>
-<div class="info">
-<div class="dormName">
-<div class="name">
-<h3 style="font-weight: 300; font-size: 22px;">3K Nang Lae</h3>
-<i id="heartIcon" class='bx bx-heart show-hide' ></i>
-</div>
-<div class="rating">
-<div class="stars">
-<i class="fa-solid fa-star"></i>
-<i class="fa-solid fa-star"></i>
-<i class="fa-solid fa-star"></i>
-<i class="fa-solid fa-star"></i>
-<i class="fa-regular fa-star"></i>
-</div>
-<div class="aval">
-Available
-</div>
-</div>
-</div>
-<div class="detail">
-<ul class="row">
-<li><i class='bx bx-money'></i> ฿ 3500/month</li>
-<li><i class='bx bx-male-female'></i>Unisex</li>
-<li><i class='bx bxs-map'></i>Lorem, ipsum dolor sit amet consectetur adipisicing elit</li>
-<li><i class='bx bxs-phone' ></i>0123456789</li>
-<li><i class='bx bxs-envelope' ></i>mileycyrus123@gmail.com</li>
-</ul>
-</div>
-<div class="buttons">
-<a href="Dorm.html"><button class="see" >See More</button></a>
-<button class="book">Book</button>
-</div>
-</div>
-</div>
-<div class="stk">
-<div class="image">
-<img src="Regent1.JPG" alt="">
-</div>
-<div class="info">
-<div class="dormName">
-<div class="name">
-<h3 style="font-weight: 300; font-size: 22px;">Regent Mansion</h3>
-<i id="heartIcon" class="bx bx-heart show-hide" ></i>
-</div>
-<div class="rating">
-<div class="stars">
-<i class="fa-solid fa-star"></i>
-<i class="fa-solid fa-star"></i>
-<i class="fa-solid fa-star"></i>
-<i class="fa-solid fa-star"></i>
-<i class="fa-solid fa-star"></i>
-</div>
-<div class="aval">
-Available
-</div>
-</div>
-</div>
-<div class="detail">
-<ul class="row">
-<li><i class='bx bx-money'></i> ฿ 3500/month</li>
-<li><i class='bx bx-male-female'></i>Unisex</li>
-<li><i class='bx bxs-map'></i>Lorem, ipsum dolor sit amet consectetur adipisicing elit</li>
-<li><i class='bx bxs-phone' ></i>0123456789</li>
-<li><i class='bx bxs-envelope' ></i>mileycyrus123@gmail.com</li>
-</ul>
-</div>
-<div class="buttons">
-<button class="see" >See More</button>
-<button class="book">Book</button>
-</div>
-</div>
-</div>
-</div>
-</div>
+
 </div>
 <div class="footer">
 <div class="contact">

@@ -376,7 +376,12 @@ section.popup .pop1{
 .info .btns .but .wish:hover{
     background-color: #dfc2a3;
 }
-
+.pop .star .star-radio{
+    visibility: hidden;
+}
+.pop .star .star-label{
+    display:inline-block;
+}
 
 
 

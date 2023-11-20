@@ -109,19 +109,31 @@
 
     <div class="pop">
         <h2>How would you recommend this dormitory to others?</h2>
-        <div class="star">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star" id="one"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
+        <form action="/rate" method="get">
+        <div class="star" th:with="star=1">
+            
+            <label for="radio" class="star-label"><i class="fa-solid fa-star"></i></label>
+            <input type="radio" class="star-radio" name="rating" id="radio" value = "1">
+
+            <label for="radio2" class="star-label"><i class="fa-solid fa-star"></i></label>
+            <input type="radio" class="star-radio" name="rating" id="radio2" value = "1">
+
+            <label for="radio3" class="star-label"><i class="fa-solid fa-star"></i></label>
+            <input type="radio" class="star-radio" name="rating" id="radio3" value = "1">
+
+            <label for="radio4" class="star-label"><i class="fa-solid fa-star"></i></label>
+            <input type="radio" class="star-radio" name="rating" id="radio4" value = "1">
+
+            <label for="radio5" class="star-label"><i class="fa-solid fa-star"></i></label>
+            <input type="radio" class="star-radio" name="rating" id="radio5" value = "1">
+            
         </div>
 
         <div class="btns">
             <button class="cancel">Cancel</button>
-            <button class="submit">Submit</button>
+            <button type="submit" class="submit">Submit</button>
         </div>
+        </form>
     </div>
 
     <div class="pop1">

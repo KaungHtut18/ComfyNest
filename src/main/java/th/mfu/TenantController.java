@@ -47,7 +47,7 @@ public class TenantController {
     WishListRepository wishListRepository;
     //for the current user so that we will not always need to run the findById funciton
     Tenant tenant = new Tenant();
-
+    
     //To encode and decode password
     private PasswordEncoder pwEncoder = new BCryptPasswordEncoder();
 
@@ -214,7 +214,11 @@ public class TenantController {
     }
 
     @GetMapping("/homepage")
-    public String homePage(Model model){
+    public String homePage(Model model)
+    {
+        ArrayList<Dormitory> dorms = new ArrayList<>();
+        dorms= (ArrayList<Dormitory>) dormRepo.findAll();
+        model.addAttribute("dormList", dorms);
         return"HomePage";
     }
 }
