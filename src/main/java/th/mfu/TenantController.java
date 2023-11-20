@@ -77,7 +77,7 @@ public class TenantController {
     public String goToLogin(HttpSession session)
     {
         if(hasSession(session))
-            return "redirect:/home";
+            return "redirect:/homepage";
         return "Login";
     }
 
@@ -99,7 +99,7 @@ public class TenantController {
                     if (rememberMe) {
                         session.setAttribute("username", email);
                     }
-                    return "redirect:/home";
+                    return "redirect:/homepage";
                 }
             else{
                 re.addFlashAttribute("error", true);
@@ -142,7 +142,7 @@ public class TenantController {
             Tenant t = new Tenant(firstName, lastName, email, gender, ph, encodedPw);
             tenantRepository.save(t);
             tenant=t;
-            return "redirect:/home";
+            return "redirect:/homepage";
         }
     }
 
@@ -213,7 +213,7 @@ public class TenantController {
         return "redirect:/wishlist";
     }
 
-    @GetMapping("/HomePage")
+    @GetMapping("/homepage")
     public String homePage(Model model){
         return"HomePage";
     }
