@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home Page | ComfyNest</title>
+<link rel="stylesheet" href="/static/css/HomePage.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+<section>
+<span class="overlay1"></span>
+<div class="pop1">
+<div class="question">
+<img src="/static/images/Confirm.png" alt="">
+</div>
+<h2>Are you sure you want to book this dormitory?</h2>
+<div class="btns">
+<button class="cancel1">Cancel</button>
+<button class="booking">Book</button>
+</div>
+</div>
+<div class="container">
+<div class="header" >
+<div class="logo">
+<a href="Home.html">C<i class='bx bxs-home-circle'></i>mfyNest</a>
+</div>
+<div class="btn">
+<a href="/wishlist">
+<i class='bx bxs-heart' ></i>
+</a>
+<a href="Profile.html">
+<img src="/static/images/profilePicture.png" alt="">
+</a>
+</div>
+</div>
+<div class="body">
+<!-- <div class="searchbar">
+<div class="bar">
+<input type="search" name="" id="" placeholder="Dormotory's name">
+<i class="fa-solid fa-magnifying-glass searchbtn"></i>
+</div>
+<div style="margin-bottom: 30px;">
+<div class="title" align="center" style="font-size: 20px; color: #6f4518;">Search By City</div>
+</div>
+<div class="city">
+<div class="btns">
+<button>Chiang Rai</button>
+<button>Chiang Mai</button>
+<button>Bangkok</button>
+<button>Phuket</button>
+<button>Salaya</button>
+<button>Pattaya</button>
+<button>Hat Yai</button>
+</div>
+</div>
+</div> -->
+<div class="searchbar">
+<form action="Dorm.html" method="GET" class="bar" id="searchForm">
+<input type="text" name="dormitoryName" placeholder="Dormitory's name" autocomplete="off">
+<!-- <input type="submit" value="Search" class="searchbtn"> -->
+<i class="fa-solid fa-magnifying-glass searchbtn" ></i>
+</form>
+<div style="margin-bottom: 30px;">
+<div class="title" align="center" style="font-size: 20px; color: #6f4518;">Search By City</div>
+</div>
+<div class="city">
+<div class="btns">
+<button>Chiang Rai</button>
+<button>Chiang Mai</button>
+<button>Bangkok</button>
+<button>Phuket</button>
+<button>Salaya</button>
+<button>Pattaya</button>
+<button>Hat Yai</button>
+</div>
+</div>
+</div>
+<div class="dorms">
+<div class="cover" style="padding: 30px 0px 0px 0px; display: flex; flex-direction: column; justify-content:center; align-items: center;">
+<div class="stk">
+<div class="image">
+<img src="STK1.JPG" alt="">
+</div>
+<div class="info">
+<div class="dormName">
+<div class="name">
+<h3 style="font-weight: 300; font-size: 22px;">STK Resort</h3>
+<i id="heartIcon" class='bx bx-heart show-hide' ></i>
+</div>
+<div class="rating">
+<div class="stars">
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-regular fa-star"></i>
+<i class="fa-regular fa-star"></i>
+</div>
+<div class="aval">
+Available
+</div>
+</div>
+</div>
+<div class="detail">
+<ul class="row">
+<li><i class='bx bx-money'></i> ฿ 3500/month</li>
+<li><i class='bx bx-male-female'></i>Unisex</li>
+<li><i class='bx bxs-map'></i>Lorem, ipsum dolor sit amet consectetur adipisicing elit</li>
+<li><i class='bx bxs-phone' ></i>0123456789</li>
+<li><i class='bx bxs-envelope' ></i>mileycyrus123@gmail.com</li>
+</ul>
+</div>
+<div class="buttons">
+<button class="see" >See More</button>
+<button class="book">Book</button>
+</div>
+</div>
+</div>
+<div class="stk">
+<div class="image">
+<img src="STK1.JPG" alt="">
+</div>
+<div class="info">
+<div class="dormName">
+<div class="name">
+<h3 style="font-weight: 300; font-size: 22px;">STK Resort</h3>
+<i id="heartIcon" class='bx bx-heart show-hide' ></i>
+</div>
+<div class="rating">
+<div class="stars">
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-regular fa-star"></i>
+<i class="fa-regular fa-star"></i>
+</div>
+<div class="aval">
+Available
+</div>
+</div>
+</div>
+<div class="detail">
+<ul class="row">
+<li><i class='bx bx-money'></i> ฿ 3500/month</li>
+<li><i class='bx bx-male-female'></i>Unisex</li>
+<li><i class='bx bxs-map'></i>Lorem, ipsum dolor sit amet consectetur adipisicing elit</li>
+<li><i class='bx bxs-phone' ></i>0123456789</li>
+<li><i class='bx bxs-envelope' ></i>mileycyrus123@gmail.com</li>
+</ul>
+</div>
+<div class="buttons">
+<button class="see" >See More</button>
+<button class="book">Book</button>
+</div>
+</div>
+</div>
+<div class="stk">
+<div class="image">
+<img src="3K1.JPG" alt="">
+</div>
+<div class="info">
+<div class="dormName">
+<div class="name">
+<h3 style="font-weight: 300; font-size: 22px;">3K Nang Lae</h3>
+<i id="heartIcon" class='bx bx-heart show-hide' ></i>
+</div>
+<div class="rating">
+<div class="stars">
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-regular fa-star"></i>
+</div>
+<div class="aval">
+Available
+</div>
+</div>
+</div>
+<div class="detail">
+<ul class="row">
+<li><i class='bx bx-money'></i> ฿ 3500/month</li>
+<li><i class='bx bx-male-female'></i>Unisex</li>
+<li><i class='bx bxs-map'></i>Lorem, ipsum dolor sit amet consectetur adipisicing elit</li>
+<li><i class='bx bxs-phone' ></i>0123456789</li>
+<li><i class='bx bxs-envelope' ></i>mileycyrus123@gmail.com</li>
+</ul>
+</div>
+<div class="buttons">
+<a href="Dorm.html"><button class="see" >See More</button></a>
+<button class="book">Book</button>
+</div>
+</div>
+</div>
+<div class="stk">
+<div class="image">
+<img src="Regent1.JPG" alt="">
+</div>
+<div class="info">
+<div class="dormName">
+<div class="name">
+<h3 style="font-weight: 300; font-size: 22px;">Regent Mansion</h3>
+<i id="heartIcon" class="bx bx-heart show-hide" ></i>
+</div>
+<div class="rating">
+<div class="stars">
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+</div>
+<div class="aval">
+Available
+</div>
+</div>
+</div>
+<div class="detail">
+<ul class="row">
+<li><i class='bx bx-money'></i> ฿ 3500/month</li>
+<li><i class='bx bx-male-female'></i>Unisex</li>
+<li><i class='bx bxs-map'></i>Lorem, ipsum dolor sit amet consectetur adipisicing elit</li>
+<li><i class='bx bxs-phone' ></i>0123456789</li>
+<li><i class='bx bxs-envelope' ></i>mileycyrus123@gmail.com</li>
+</ul>
+</div>
+<div class="buttons">
+<button class="see" >See More</button>
+<button class="book">Book</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="footer">
+<div class="contact">
+<div class="member">
+<h3>CONTACT</h3>
+<ul class="list">
+<li>Group One</li>
+<li>091479581</li>
+<li style="visibility: hidden;">Off-Campus Dormitory Finding System</li>
+</ul>
+</div>
+<div class="gp">
+<div class="member">
+<h3>OUR TEAM</h3>
+<ul class="list">
+<li> KAUNG HTUT HLAING</li>
+<li>KHUN SHINE SI THU</li>
+<li>SWAN YI PHYO</li>
+</ul>
+</div>
+<div class="member" style="margin-left: 20px;">
+<h3 style="visibility: hidden;">OUR TEAM</h3>
+<ul class="list">
+<li>MYAT THU KYAW</li>
+<li>SAI MYAT MIN HAN</li>
+<li>KHANT MIN HTET</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="copyright">
+<ul class="list">
+<li>©2023 - Group One | All right reserved</li>
+<li>Mae Fah Luang University</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+
+<script src="/static/js/heart.js"></script>
+</body>
+</html>
+<!-- <i class='bx bx-search'></i> -->
+<!-- yay in searchbtn pyouk -->
+
+
+<!-- <i class="fa-regular fa-circle-arrow-up"></i> -->
+<!-- <i class="fa-regular fa-circle-arrow-down"></i> -->
+
+
+<!-- <i class='bx bxs-heart' ></i> -->
+

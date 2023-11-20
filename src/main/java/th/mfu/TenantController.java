@@ -212,4 +212,9 @@ public class TenantController {
         wishListRepository.deleteByDormitory(dorm);
         return "redirect:/wishlist";
     }
+
+    @GetMapping("/HomePage")
+    public String homePage(Model model){
+        return"HomePage";
+    }
 }
