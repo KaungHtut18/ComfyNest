@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +27,7 @@ import th.mfu.Repos.TenantRepository;
 import th.mfu.Repos.WishListRepository;
 import th.mfu.domain.Dormitory;
 import th.mfu.domain.Landlord;
+import th.mfu.domain.City;
 import th.mfu.domain.Rating;
 import th.mfu.domain.Tenant;
 import th.mfu.domain.WishList;
@@ -172,7 +174,7 @@ public class TenantController {
         String phone = l.getTelephone();
         model.addAttribute("dorm", dorm);
         model.addAttribute("phone", phone);
-        model.addAttribute("rating", 3);
+        model.addAttribute("rating", dorm.getRating().calcRating());
         return "DormDetail";
    }
    @GetMapping("/userDetail")
@@ -180,14 +182,6 @@ public class TenantController {
    {
         model.addAttribute("tenant", tenant);
         return "Profile";
-   }
-   @GetMapping("/logout")
-   public String logout(HttpSession session)
-   {
-        if (hasSession(session)) {
-            session.invalidate();
-        }
-        return "/";
    }
    //TODO: add functions for searching, user account page
     @GetMapping("/wishlist")
@@ -214,10 +208,10 @@ public class TenantController {
         wish.setTenant(tenant);
         for (WishList list : wishListRepository.findByDormitoryAndTenant(wish.getDormitory(), tenant)) {
             if (wish.equals(list))
-                return path;
+                return "redirect:/dorm/"+id;
         }
         wishListRepository.save(wish);
-        return path;
+        return "redirect:/dorm/"+id;
     }
     @GetMapping("/remove/{dorm}")
     @Transactional
@@ -233,6 +227,44 @@ public class TenantController {
         ArrayList<Dormitory> dorms = new ArrayList<>();
         dorms= (ArrayList<Dormitory>) dormRepo.findAll();
         model.addAttribute("dormList", dorms);
+        model.addAttribute("cityList", City.values());
         return"HomePage";
     }
-}
+    @GetMapping("/logout")
+    public String logout()
+    {
+        tenant=null;
+        return "Login";
+    }
+    @GetMapping("/city/{city}")
+    public String searchByProvince(@PathVariable String city,Model model)
+    {
+        System.out.println(city);
+        ArrayList<Dormitory> dorms = dormRepo.findByCity(city);
+        model.addAttribute("dormList", dorms);
+        model.addAttribute("cityList", City.values());
+        return"HomePage";
+    }
+    @PostMapping("/search")
+    public String searchByName(@RequestParam String dormitoryName,Model model)
+    {
+        ArrayList<Dormitory> dorms = dormRepo.findByNameIgnoreCaseContaining(dormitoryName.trim());
+        model.addAttribute("dormList", dorms);
+        model.addAttribute("cityList", City.values());
+        return"HomePage";
+    }
+    @Transactional
+    @PostMapping("/rate")
+    public String rating(@RequestParam int rating, @RequestParam int ratingId, @RequestParam int dormId)
+    {
+        switch (rating) {
+            case 2: ratingRepository.increaseTwoCountById(ratingId);break;
+            case 3: ratingRepository.increaseThreeCountById(ratingId);break;
+            case 4: ratingRepository.increaseFourCountById(ratingId);break;
+            case 5: ratingRepository.increaseFiveCountById(ratingId);break;
+            default: ratingRepository.increaseOneCountById(ratingId);
+            break;
+        }
+        return "redirect:/dorm/"+dormId;
+    }
+}   

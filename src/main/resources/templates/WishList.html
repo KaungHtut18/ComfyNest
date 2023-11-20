@@ -31,9 +31,9 @@
                        <div class="name" th:text="${dorm.name}">
                        </div>
                        <div class="btn">
-                           <i class='bx bx-trash'><a th:href="@{'/remove/' + ${dorm.id}}"></a></i>
-                           <a th:href="@{'/dorm/' + ${dorm.id}}"><button type="button" class="see">See More</button></a>
-                           <a href="#"><button type="button" class="book">Book</button></a>
+                            <a th:href="@{'/remove/' + ${dorm.id}}"><i class='bx bx-trash'></i></a>
+                            <a th:href="@{'/dorm/' + ${dorm.id}}"><button type="button" class="see">See More</button></a>
+                            <a href="#"><button type="button" class="book">Book</button></a>
                        </div>
                    </td>
                </tr>

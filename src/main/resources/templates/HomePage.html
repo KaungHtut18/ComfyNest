@@ -25,7 +25,7 @@
 <div class="container">
 <div class="header" >
 <div class="logo">
-<a href="Home.html">C<i class='bx bxs-home-circle'></i>mfyNest</a>
+<a href="/homepage">C<i class='bx bxs-home-circle'></i>mfyNest</a>
 </div>
 <div class="btn">
 <a href="/wishlist">
@@ -58,23 +58,18 @@
 </div>
 </div> -->
 <div class="searchbar">
-<form action="/search" method="post" class="bar" id="searchForm">
+<form th:action="@{/search}" method="post" class="bar" id="searchForm">
 <input type="text" name="dormitoryName" placeholder="Dormitory's name" autocomplete="off">
-<!-- <input type="submit" value="Search" class="searchbtn"> -->
-<i class="fa-solid fa-magnifying-glass searchbtn" ></i>
+<input type="submit" value="Search" class="searchbtn">
+<!-- <i class="fa-solid fa-magnifying-glass searchbtn" ></i> -->
 </form>
 <div style="margin-bottom: 30px;">
 <div class="title" align="center" style="font-size: 20px; color: #6f4518;">Search By City</div>
 </div>
 <div class="city">
-<div class="btns">
-<button>Chiang Rai</button>
-<button>Chiang Mai</button>
-<button>Bangkok</button>
-<button>Phuket</button>
-<button>Salaya</button>
-<button>Pattaya</button>
-<button>Hat Yai</button>
+<div class="btns" th:each="city : ${cityList}">
+<a th:href="@{'/city/'+${city.getCity()}}"><button><span th:text="${city.getCity()}"></span></button></a>
+
 </div>
 </div>
 </div>
@@ -91,9 +86,12 @@
 <a th:href="@{'/addfav'+${dorm.id}}"><i id="heartIcon" class='bx bx-heart show-hide' ></i></a>
 </div>
 <div class="rating">
-    <div class="stars" th:with="maxStars=5, fullStars=${#numbers.sequence(1, dorm.rating.calcRating())}">
+    <div class="stars" th:with="maxStars=5,rating=${dorm.rating.calcRating()}, fullStars=${#numbers.sequence(1, rating)}">
         <span th:each="star : ${fullStars}" class="star"><i class="fa-solid fa-star"></i></span>
-        <span th:each="star : ${#numbers.sequence(dorm.rating.calcRating() + 1, maxStars)}"><i class="fa-regular fa-star"></i></span>
+        <span th:unless="${rating>=5}">
+            <span th:each="star : ${#numbers.sequence(rating + 1, maxStars)}"><i class="fa-regular fa-star"></i></span>
+        </span>
+        
         
     </div>
     <span th:if="${dorm.fullyBooked}" class="aval">
@@ -116,7 +114,7 @@
 <ul class="row">
 <li><i class='bx bx-money'></i> ฿ <span th:text="${dorm.price}"></span>/month</li>
 <li><i class='bx bx-male-female'></i><span th:text="${dorm.gender}"></span></li>
-<li><i class='bx bxs-map'></i><span th:text="${dorm.location}"></span></li>
+<li><i class='bx bxs-map'></i><span th:text="${dorm.city}"></span></li>
 <li><i class='bx bxs-phone' ></i><span th:text="${dorm.landlord.telephone}"></span></li>
 <li><i class='bx bxs-envelope' ></i><span th:text="${dorm.email}"></span></li>
 </ul>
@@ -129,34 +127,35 @@
 </div>
 
 </div>
+</div>
 <div class="footer">
-<div class="contact">
-<div class="member">
-<h3>CONTACT</h3>
-<ul class="list">
-<li>Group One</li>
-<li>091479581</li>
-<li style="visibility: hidden;">Off-Campus Dormitory Finding System</li>
-</ul>
-</div>
-<div class="gp">
-<div class="member">
-<h3>OUR TEAM</h3>
-<ul class="list">
-<li> KAUNG HTUT HLAING</li>
-<li>KHUN SHINE SI THU</li>
-<li>SWAN YI PHYO</li>
-</ul>
-</div>
-<div class="member" style="margin-left: 20px;">
-<h3 style="visibility: hidden;">OUR TEAM</h3>
-<ul class="list">
-<li>MYAT THU KYAW</li>
-<li>SAI MYAT MIN HAN</li>
-<li>KHANT MIN HTET</li>
-</ul>
-</div>
-</div>
+    <div class="contact">
+    <div class="member">
+    <h3>CONTACT</h3>
+    <ul class="list">
+    <li>Group One</li>
+    <li>091479581</li>
+    <li style="visibility: hidden;">Off-Campus Dormitory Finding System</li>
+    </ul>
+    </div>
+    <div class="gp">
+    <div class="member">
+    <h3>OUR TEAM</h3>
+    <ul class="list">
+    <li> KAUNG HTUT HLAING</li>
+    <li>KHUN SHINE SI THU</li>
+    <li>SWAN YI PHYO</li>
+    </ul>
+    </div>
+    <div class="member" style="margin-left: 20px;">
+    <h3 style="visibility: hidden;">OUR TEAM</h3>
+    <ul class="list">
+    <li>MYAT THU KYAW</li>
+    <li>SAI MYAT MIN HAN</li>
+    <li>KHANT MIN HTET</li>
+    </ul>
+    </div>
+    </div>
 </div>
 <div class="copyright">
 <ul class="list">
@@ -165,7 +164,7 @@
 </ul>
 </div>
 </div>
-</div>
+
 </section>
 
 

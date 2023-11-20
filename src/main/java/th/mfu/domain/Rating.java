@@ -98,4 +98,25 @@ public class Rating
         
         return (1*OneCount+2*twoCount+3*threeCount+4*fourCount+5*fiveCount)/totalCount;
     }
+    public void increOne()
+    {
+        this.OneCount++;
+    }
+    public void increTwo()
+    {
+        this.twoCount++;
+    }
+    public void increThree()
+    {
+        this.threeCount++;
+    }
+    public void increFour()
+    {
+        this.fourCount++;
+    }
+    public void increFive()
+    {
+        this.fiveCount++;
+    }
+
 }

@@ -21,7 +21,7 @@ public class Dormitory {
     private Rating rating;
 
     private String name;
-    private String location;
+    private String city;
     private String province;
     private int price;
     private String gender;
@@ -41,7 +41,7 @@ public class Dormitory {
         this.id = id;
         this.rating = rating;
         this.name = name;
-        this.location = location;
+        this.city = location;
         this.province = province;
         this.price = price;
         this.gender = gender;
@@ -124,12 +124,12 @@ public class Dormitory {
         this.name = name;
     }
 
-    public String getLocation() {
-        return location;
+    public String getCity() {
+        return city;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setCity(String location) {
+        this.city = location;
     }
 
     public String getProvince() {

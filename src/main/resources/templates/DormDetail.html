@@ -109,23 +109,25 @@
 
     <div class="pop">
         <h2>How would you recommend this dormitory to others?</h2>
-        <form action="/rate" method="get">
+        <form th:action="@{/rate}" method="post">
+            <input type="hidden" name="ratingId" th:value="${dorm.getRating.getId()}">
+            <input type="hidden" name="dormId" th:value="${dorm.getId()}">
         <div class="star" th:with="star=1">
             
             <label for="radio" class="star-label"><i class="fa-solid fa-star"></i></label>
-            <input type="radio" class="star-radio" name="rating" id="radio" value = "1">
+            <input type="radio" class="star-radio" name="rating" id="radio"  value = "1">
 
             <label for="radio2" class="star-label"><i class="fa-solid fa-star"></i></label>
-            <input type="radio" class="star-radio" name="rating" id="radio2" value = "1">
+            <input type="radio" class="star-radio" name="rating" id="radio2" value = "2">
 
             <label for="radio3" class="star-label"><i class="fa-solid fa-star"></i></label>
-            <input type="radio" class="star-radio" name="rating" id="radio3" value = "1">
+            <input type="radio" class="star-radio" name="rating" id="radio3" value = "3">
 
             <label for="radio4" class="star-label"><i class="fa-solid fa-star"></i></label>
-            <input type="radio" class="star-radio" name="rating" id="radio4" value = "1">
+            <input type="radio" class="star-radio" name="rating" id="radio4" value = "4">
 
             <label for="radio5" class="star-label"><i class="fa-solid fa-star"></i></label>
-            <input type="radio" class="star-radio" name="rating" id="radio5" value = "1">
+            <input type="radio" class="star-radio" name="rating" id="radio5" value = "5">
             
         </div>
 
@@ -181,7 +183,10 @@
                 <div class="rating">
                     <div class="stars" th:with="maxStars=5, fullStars=${#numbers.sequence(1, rating)}">
                         <span th:each="star : ${fullStars}" class="star"><i class="fa-solid fa-star"></i></span>
-                        <span th:each="star : ${#numbers.sequence(rating + 1, maxStars)}"><i class="fa-regular fa-star"></i></span>
+                        <span th:unless="${rating>=5}">
+                            <span th:each="star : ${#numbers.sequence(rating + 1, maxStars)}"><i class="fa-regular fa-star"></i></span>
+                        </span>
+                        
                         
                     </div>
                     <span th:if="${dorm.fullyBooked}" class="aval">
@@ -203,7 +208,7 @@
                     <ul class="row">
                         <li><i class='bx bx-money'></i> ฿ <span th:text="${dorm.price}"></span>/month</li>
                         <li><i class='bx bx-male-female'></i><span th:text="${dorm.gender}"></span></li>
-                        <li><i class='bx bxs-map'></i><span th:text="${location}"> Lorem, ipsum dolor sit amet consectetur adipisicing elit</span></li>
+                        <li><i class='bx bxs-map'></i><span th:text="${dorm.city}"> Lorem, ipsum dolor sit amet consectetur adipisicing elit</span></li>
                         <li><i class='bx bxs-phone'></i><span th:text="${phone}">0123456789</span></li>
                         <li><i class='bx bxs-envelope'></i><span th:text="${dorm.email}"></span></li>
                     </ul>
