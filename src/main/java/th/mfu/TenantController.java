@@ -3,6 +3,9 @@ package th.mfu;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -49,6 +51,7 @@ public class TenantController {
     WishListRepository wishListRepository;
     //for the current user so that we will not always need to run the findById funciton
     Tenant tenant = new Tenant();
+    private Boolean isLoggedin=false;
     
     //To encode and decode password
     private PasswordEncoder pwEncoder = new BCryptPasswordEncoder();
@@ -76,16 +79,22 @@ public class TenantController {
     }
 
     @GetMapping("/")
-    public String goToLogin(HttpSession session)
+    public String goToLogin(@CookieValue(name="email",defaultValue = "none") String cookieValue)
     {
-        if(hasSession(session))
-            return "redirect:/homepage";
-        return "Login";
+        try
+        {
+            tenant=tenantRepository.findByEmail(cookieValue).get();
+            isLoggedin=true;
+            return "redirect:/home";
+        }catch(NoSuchElementException e)
+        {
+            return "Login";
+        }
     }
 
     @PostMapping("/login")
     public String validate(@RequestParam String email, @RequestParam String password,RedirectAttributes re,@RequestParam(value = "rememberMe", defaultValue = "false") boolean rememberMe,
-                            HttpSession session)
+                            HttpSession session, HttpServletResponse response)
     {
         //TODO: get data from the web page, encrypt password and match with the database to validate
         if(hasSession(session))
@@ -98,8 +107,12 @@ public class TenantController {
             if(pwEncoder.matches(password, temp.getPassword()))   
                 {
                     tenant=temp;
+                    isLoggedin=true;
                     if (rememberMe) {
-                        session.setAttribute("username", email);
+                        Cookie cookie = new Cookie("email", email);
+                        cookie.setPath("/");
+                        cookie.setMaxAge(3600);
+                        response.addCookie(cookie);
                     }
                     return "redirect:/homepage";
                 }
@@ -144,6 +157,7 @@ public class TenantController {
             Tenant t = new Tenant(firstName, lastName, email, gender, ph, encodedPw);
             tenantRepository.save(t);
             tenant=t;
+            isLoggedin=true;
             return "redirect:/homepage";
         }
     }
@@ -151,6 +165,7 @@ public class TenantController {
    @GetMapping("/home")
    public String home(Model model,HttpSession session)
    {
+        
         model.addAttribute("error", true);
         model.addAttribute("tenants", tenant);
         if (hasSession(session)) {
@@ -165,9 +180,8 @@ public class TenantController {
    @GetMapping("/dorm/{id}")
    public String showDormDetail(@PathVariable int id, Model model)
    {
-        //Landlord land = new Landlord("owner@gmail.com", "Owner", "Man", "12345667");
-        //Rating r = new Rating(1, 0, 0, 3, 0, 0, 0);
-        //Dormitory d = new Dormitory(1,r,"3K","we live here","Chiang rai",3000,"unisex",false,"Some desc fajkhfaohfijewahf;oijajgf;oierjhgiersj ofijreafkgsajf;ljksdf g;kjhr;oihag oe","Some rules","We provide these kjg;oirewhagpoihaeofjaw rhpwo oihiuh ioh oiigh poerhaiguh aiwurehg iwah  weh","3K1.JPG","3K2.JPG","3K3.JPG","3K4.JPG","owner@gmail.com",land);
+        if(!isLoggedin)
+            return "redirect:/";
         int dormId = (Integer)id;
         Dormitory dorm = dormRepo.findById(dormId).get();
         Landlord l= landLordRepo.findById(dorm.getLandlord().getEmail()).get();
@@ -187,6 +201,8 @@ public class TenantController {
     @GetMapping("/wishlist")
     public String wishlist(Model model)
     {
+         if(!isLoggedin)
+            return "redirect:/";
         ArrayList<Dormitory> dorms = new ArrayList<>();
         for (WishList item : wishListRepository.findByTenant(tenant)) {
             dorms.add(item.getDormitory());
@@ -201,6 +217,8 @@ public class TenantController {
     @GetMapping("/add/{id}")
     public String addToWishList(@PathVariable int id)
     {
+         if(!isLoggedin)
+            return "redirect:/";
         String path = "/dorm/"+id;
         path.trim();
         WishList wish = new WishList();
@@ -217,6 +235,8 @@ public class TenantController {
     @Transactional
     public String removeItem(@PathVariable Dormitory dorm)
     {
+         if(!isLoggedin)
+            return "redirect:/";
         wishListRepository.deleteByDormitory(dorm);
         return "redirect:/wishlist";
     }
@@ -224,6 +244,8 @@ public class TenantController {
     @GetMapping("/homepage")
     public String homePage(Model model)
     {
+         if(!isLoggedin)
+            return "redirect:/";
         ArrayList<Dormitory> dorms = new ArrayList<>();
         dorms= (ArrayList<Dormitory>) dormRepo.findAll();
         model.addAttribute("dormList", dorms);
@@ -231,14 +253,21 @@ public class TenantController {
         return"HomePage";
     }
     @GetMapping("/logout")
-    public String logout()
+    public String logout(HttpServletResponse response)
     {
+        Cookie cookie = new Cookie("email", "");
+        cookie.setPath("/");
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
         tenant=null;
+        isLoggedin=false;
         return "Login";
     }
     @GetMapping("/city/{city}")
     public String searchByProvince(@PathVariable String city,Model model)
     {
+         if(!isLoggedin)
+            return "redirect:/";
         System.out.println(city);
         ArrayList<Dormitory> dorms = dormRepo.findByCity(city);
         model.addAttribute("dormList", dorms);
@@ -248,6 +277,8 @@ public class TenantController {
     @PostMapping("/search")
     public String searchByName(@RequestParam String dormitoryName,Model model)
     {
+         if(!isLoggedin)
+            return "redirect:/";
         ArrayList<Dormitory> dorms = dormRepo.findByNameIgnoreCaseContaining(dormitoryName.trim());
         model.addAttribute("dormList", dorms);
         model.addAttribute("cityList", City.values());
@@ -257,6 +288,8 @@ public class TenantController {
     @PostMapping("/rate")
     public String rating(@RequestParam int rating, @RequestParam int ratingId, @RequestParam int dormId)
     {
+         if(!isLoggedin)
+            return "redirect:/";
         switch (rating) {
             case 2: ratingRepository.increaseTwoCountById(ratingId);break;
             case 3: ratingRepository.increaseThreeCountById(ratingId);break;
