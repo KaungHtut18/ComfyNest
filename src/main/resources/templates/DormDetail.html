@@ -9,99 +9,7 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
-<!-- <body th:object="${dorm}">
-    <div class="back">
-        <a href="LoginPage.html">
-            <i class='bx bx-left-arrow-circle'></i>
-        </a>
-    </div>
-    
-    <div class="container">
-        <div class="images">
-            <div class="one">
-                <div class="first">
-                    <img th:src="@{/static/images/{fileName}(fileName=${dorm.img1})}" alt="">
-                </div>
-                <div class="second">
-                    <img th:src="@{/static/images/{fileName}(fileName=${dorm.img2})}"  alt="">
-                </div>
-            </div>
-               
-            <div class="two">
-                <div class="first">
-                    <img th:src="@{/static/images/{fileName}(fileName=${dorm.img3})}"  alt="">
-                </div>
-                <div class="second">
-                    <img th:src="@{/static/images/{fileName}(fileName=${dorm.img4})}"  alt="">
-                </div>
-            </div>
-                
-        </div>
-        <div class="info">
-            <div class="text">
-                <div class="header">
-                    <div class="dName">
-                        <h2 th:text="${dorm.name}"></h2>
-                    </div>
-                    <div class="ratAv">
-                        <div class="rating">
-                            <i class='bx bxs-star' ></i>
-                            <i class='bx bxs-star' ></i>
-                            <i class='bx bxs-star' ></i>
-                            <i class='bx bxs-star' ></i>
-                            <i class='bx bx-star'></i>
-                        </div>
-                        <div class="Av" th:if="${dorm.fullyBooked}">
-                            Full
-                        </div>
-                        <div class="Av" th:if="${dorm.fullyBooked=false}">
-                            Availble
-                        </div>
-                    </div>
-                </div>
-                <div class="detail">
-                    <div class="price" id="row">
-                        <i class='bx bx-money'></i> ฿ <span th:text="${dorm.price}"></span>/month
-                    </div>
-                    <div class="gender" id="row">
-                        <i class='bx bx-male-female'></i><span th:text="${dorm.gender}"> </span>
-                    </div>
-                    <div class="location" id="row">
-                        <i class='bx bxs-map'></i><span th:text="${location}"> Lorem ipsum dolor sit amet consectetur adipisicing elit</span>
-                    </div>
-                    <div class="phone" id="row">
-                        <i class='bx bxs-phone' ></i><span th:text="${phone}"> 0123456789</span>
-                    </div>
-                    <div class="email" id="row">
-                        <i class='bx bxs-envelope' ></i><span th:text="${dorm.email}"></span>
-                    </div>
-                    <div class="api">
 
-                    </div><br>
-                    <div class="desc">
-                        <span th:text="${dorm.description}"></span>
-                    </div><br>
-                    <div class="ameni">
-                        <span th:text="${dorm.Amenties}"></span>
-                    </div><br>
-                    <div class="rules">
-                        <span th:text="${dorm.rules}"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="btn">
-                <div class="but">
-                    <button class="wish" id="btn">Add to Wishlist</button>
-                    <button class="wish" id="btn">Rate This Dormitory</button>
-                </div>
-                <div class="ton">
-                    <button class="book" id="btn">Book</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-</body> -->
 <body th:object="${dorm}">
     <section>
         <span class="overlay"></span>
@@ -132,7 +40,7 @@
         </div>
 
         <div class="btns">
-            <button class="cancel">Cancel</button>
+            <button class="cancel" type="button">Cancel</button>
             <button type="submit" class="submit">Submit</button>
         </div>
         </form>
@@ -227,7 +135,11 @@
                 </div>
             </div><br>
             <div class="btns">
-                <div class="but">
+                <div th:if="${isWished}" class="but">
+                    <a th:href="@{'/remove/'+${dorm.id}}"><button class="wish" >Remove from Wishlist</button></a>
+                    <button class="wish" id="rate">Rate This Dormitory  <i class="fa-solid fa-star"></i></button>
+                </div>
+                <div th:if="${isWished==false}" class="but">
                     <a th:href="@{'/add/'+${dorm.id}}"><button class="wish" >Add to Wishlist</button></a>
                     <button class="wish" id="rate">Rate This Dormitory  <i class="fa-solid fa-star"></i></button>
                 </div>

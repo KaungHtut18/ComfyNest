@@ -1,10 +1,12 @@
 package th.mfu;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.NoSuchElementException;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -52,7 +54,7 @@ public class TenantController {
     //for the current user so that we will not always need to run the findById funciton
     Tenant tenant = new Tenant();
     private Boolean isLoggedin=false;
-    
+    private HashSet<Integer> dormIdHashSet = new HashSet<>();
     //To encode and decode password
     private PasswordEncoder pwEncoder = new BCryptPasswordEncoder();
 
@@ -66,17 +68,6 @@ public class TenantController {
         this.ratingRepository = ratingRepository;
         this.wishListRepository = wishListRepository;
     }
-    private Boolean hasSession(HttpSession session)
-    {
-        if (session != null) {
-            if(session.getAttribute("username")!=null)
-            {
-                tenant = tenantRepository.findByEmail(session.getAttribute("username").toString()).get();
-                return true;
-            }
-        }
-        return false;
-    }
 
     @GetMapping("/")
     public String goToLogin(@CookieValue(name="email",defaultValue = "none") String cookieValue)
@@ -85,6 +76,11 @@ public class TenantController {
         {
             tenant=tenantRepository.findByEmail(cookieValue).get();
             isLoggedin=true;
+            try{
+                addToDormHashSet();
+            }catch(NoSuchElementException e){
+
+            }
             return "redirect:/home";
         }catch(NoSuchElementException e)
         {
@@ -96,9 +92,7 @@ public class TenantController {
     public String validate(@RequestParam String email, @RequestParam String password,RedirectAttributes re,@RequestParam(value = "rememberMe", defaultValue = "false") boolean rememberMe,
                             HttpSession session, HttpServletResponse response)
     {
-        //TODO: get data from the web page, encrypt password and match with the database to validate
-        if(hasSession(session))
-            return "redirect:/home";
+        
         Tenant temp;
         try
         {
@@ -113,6 +107,12 @@ public class TenantController {
                         cookie.setPath("/");
                         cookie.setMaxAge(3600);
                         response.addCookie(cookie);
+                    }
+                    try{
+                    addToDormHashSet();
+                    }catch(NoSuchElementException e)
+                    {
+
                     }
                     return "redirect:/homepage";
                 }
@@ -168,10 +168,6 @@ public class TenantController {
         
         model.addAttribute("error", true);
         model.addAttribute("tenants", tenant);
-        if (hasSession(session)) {
-            model.addAttribute("hasSession", "true");
-        }
-        else
         model.addAttribute("hasSession", "false");
         //TODO: get the user detail and display the data of dorms with 10 results per page
         return "home";
@@ -189,6 +185,10 @@ public class TenantController {
         model.addAttribute("dorm", dorm);
         model.addAttribute("phone", phone);
         model.addAttribute("rating", dorm.getRating().calcRating());
+        if(dormIdHashSet.contains(id))
+            model.addAttribute("isWished",true);
+        else
+            model.addAttribute("isWished",false);
         return "DormDetail";
    }
    @GetMapping("/userDetail")
@@ -219,6 +219,7 @@ public class TenantController {
     {
          if(!isLoggedin)
             return "redirect:/";
+
         String path = "/dorm/"+id;
         path.trim();
         WishList wish = new WishList();
@@ -229,15 +230,24 @@ public class TenantController {
                 return "redirect:/dorm/"+id;
         }
         wishListRepository.save(wish);
+        dormIdHashSet.add(id);
         return "redirect:/dorm/"+id;
     }
-    @GetMapping("/remove/{dorm}")
+    @GetMapping("/remove/{id}")
     @Transactional
-    public String removeItem(@PathVariable Dormitory dorm)
+    public String removeItem(@PathVariable int id, HttpServletRequest request)
     {
          if(!isLoggedin)
             return "redirect:/";
+        String referer = request.getHeader("Referer");
+        Dormitory dorm = dormRepo.findById(id).get();
         wishListRepository.deleteByDormitory(dorm);
+        dormIdHashSet.remove(dorm.getId());
+        if (referer != null && !referer.isEmpty())
+        {
+            System.out.println(referer);
+            return "redirect:"+referer;
+        }
         return "redirect:/wishlist";
     }
 
@@ -298,6 +308,13 @@ public class TenantController {
             default: ratingRepository.increaseOneCountById(ratingId);
             break;
         }
+        System.out.println("rated"+rating);
         return "redirect:/dorm/"+dormId;
+    }
+    public void addToDormHashSet() throws NoSuchElementException
+    {
+        for (WishList item : wishListRepository.findByTenant(tenant)) {
+            dormIdHashSet.add(item.getDormitory().getId());
+        }
     }
 }   
