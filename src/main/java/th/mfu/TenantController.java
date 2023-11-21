@@ -81,7 +81,7 @@ public class TenantController {
             }catch(NoSuchElementException e){
 
             }
-            return "redirect:/home";
+            return "redirect:/homepage";
         }catch(NoSuchElementException e)
         {
             return "Login";

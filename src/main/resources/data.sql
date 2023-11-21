@@ -13,14 +13,14 @@ INSERT INTO RATING (id,oneCount, twoCount, threeCount, fourCount, fiveCount, zer
 -- Insert sample data into DORMITORY table
 INSERT INTO DORMITORY (
     id,rating_id, name, city, province, price, gender, fullyBooked, description, rules, Amenties,
-    img1, img2, img3, img4, email, landlord_email
+    img1, img2, img3, img4, email, landlord_email,lat,lng
 ) VALUES
 (1,1, '3K', 'Chiang Rai', 'Mueang Chiang Rai', 3000, 'Unisex', false, 'Here are some descriptions', 'Here are some rules', 'We provide these amenities',
- '3K1.jpg', '3K2.jpg', '3K3.jpg', '3K4.jpg', 'dormitoryA@example.com', 'landlord1@example.com'),
+ '3K1.jpg', '3K2.jpg', '3K3.jpg', '3K4.jpg', 'dormitoryA@example.com', 'landlord1@example.com',19.90885594661509, 99.855986253231),
  (3,3, 'Regent Mansion', 'Chiang Mai', 'Mueang Chiang Rai', 3000, 'Unisex', false, 'Here are some descriptions', 'Here are some rules', 'We provide these amenities',
- 'Beyond1.jpg', 'Beyond2.jpg', 'Beyond3.jpg', 'Beyond4.jpg', 'dormitoryA@example.com', 'landlord1@example.com'),
+ 'Beyond1.jpg', 'Beyond2.jpg', 'Beyond3.jpg', 'Beyond4.jpg', 'dormitoryA@example.com', 'landlord1@example.com',20.04309266241252, 99.88063398206963),
  (2,2, 'Beyond', 'Bangkok', 'Mueang Chiang Rai', 3000, 'Unisex', false, 'Here are some descriptions', 'Here are some rules', 'We provide these amenities',
- 'Beyond1.jpg', 'Beyond2.jpg', 'Beyond3.jpg', 'Beyond4.jpg', 'dormitoryA@example.com', 'landlord1@example.com');
+ 'Beyond1.jpg', 'Beyond2.jpg', 'Beyond3.jpg', 'Beyond4.jpg', 'dormitoryA@example.com', 'landlord1@example.com',20.046637552020567, 99.88055756857642);
 
 
 -- Insert sample data into RATING table

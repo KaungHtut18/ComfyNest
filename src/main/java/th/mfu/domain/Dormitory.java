@@ -33,11 +33,13 @@ public class Dormitory {
     private String email;
     @ManyToOne
     private Landlord landlord;
+    private double lat;
+    private double lng;
 
     
     public Dormitory(int id, Rating rating, String name, String location, String province, int price, String gender,
             boolean fullyBooked, String description, String rules, String amenties, String img1, String img2,
-            String img3, String img4, String email, Landlord landlord) {
+            String img3, String img4, String email, Landlord landlord,double lat,double lng) {
         this.id = id;
         this.rating = rating;
         this.name = name;
@@ -55,6 +57,8 @@ public class Dormitory {
         this.img4 = img4;
         this.email = email;
         this.landlord = landlord;
+        this.lat=lat;
+        this.lng=lng;
     }
     public Dormitory()
     {
@@ -63,7 +67,19 @@ public class Dormitory {
     public Landlord getLandlord() {
         return landlord;
     }
-
+    
+    public double getLat() {
+        return lat;
+    }
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+    public double getLng() {
+        return lng;
+    }
+    public void setLng(double lng) {
+        this.lng = lng;
+    }
     public void setLandlord(Landlord landlord) {
         this.landlord = landlord;
     }
