@@ -28,6 +28,7 @@ section{
     pointer-events: none;
     opacity: 0;
     position: absolute;
+    z-index: 1000;
 }
 .pop{
     position: absolute;
@@ -44,6 +45,7 @@ section{
     pointer-events: none;
     transition: all 0.3s ease;
     transform: translate(-50%, -50%) scale(1.2);
+    z-index: 1000;
 }
 .pop h2{
     text-align: center;
@@ -119,6 +121,7 @@ section{
     pointer-events: none;
     opacity: 0;
     position: absolute;
+    z-index: 1000;
 }
 .pop1{
     position: absolute;
@@ -135,6 +138,7 @@ section{
     pointer-events: none;
     transition: all 0.3s ease;
     transform: translate(-50%, -50%) scale(1.2);
+    z-index: 1000;
 }
 .pop1 .question{
     padding: 20px;

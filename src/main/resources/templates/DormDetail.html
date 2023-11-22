@@ -16,7 +16,7 @@
         <span class="overlay"></span>
         <span class="overlay1"></span>
 
-    <div class="pop">
+        <div class="pop">
         <h2>How would you recommend this dormitory to others?</h2>
         <form th:action="@{/rate}" method="post">
             <input type="hidden" name="ratingId" th:value="${dorm.getRating.getId()}">
@@ -95,8 +95,6 @@
                         <span th:unless="${rating>=5}">
                             <span th:each="star : ${#numbers.sequence(rating + 1, maxStars)}"><i class="fa-regular fa-star"></i></span>
                         </span>
-                        
-                        
                     </div>
                     <span th:if="${dorm.fullyBooked}" class="aval">
                         Full
@@ -108,12 +106,6 @@
             </div>
             <div class="detail">
                 <div class="list">
-                    <!-- <div class="row"><i class='bx bx-money'></i> ฿ 3500/month</div>
-                    <div class="row"><i class='bx bx-male-female'></i>Unisex</div>
-                    <div class="row"><i class='bx bxs-map'></i>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus</div>
-                    <div class="row"><i class='bx bxs-phone' ></i>0123456789</div>
-                    <div class="row"><i class='bx bxs-envelope' ></i>mileycyrus123@gmail.com</div> -->
-                   
                     <ul class="row">
                         <li><i class='bx bx-money'></i> ฿ <span th:text="${dorm.price}"></span>/month</li>
                         <li><i class='bx bx-male-female'></i><span th:text="${dorm.gender}"></span></li>
@@ -125,12 +117,15 @@
                 <div class="text">
                     <div class="api" th:attr="data-lat=${dorm.lat}, data-lng=${dorm.lng}" id="map"></div><br>
                     <div class="row" >
+                        <h6>Description</h6>
                         <span th:text="${dorm.description}"></span>
                     </div><br>
                     <div class="row">
+                        <h6>Amenties</h6>
                         <span th:text="${dorm.Amenties}"></span>
                     </div><br>
                     <div class="row">
+                        <h6>Rules</h6>
                         <span th:text="${dorm.rules}"></span>
                     </div>
                 </div>

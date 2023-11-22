@@ -94,6 +94,9 @@ body{
 .wrapper form .button input:hover{
     background-color:#845b37;
 }
+.wrapper form .row input.error {
+    border-color: red;
+}
 .wrapper form .check{
     display: flex;
     justify-content: start;
@@ -132,13 +135,13 @@ body{
     font-size: 14px;
     font-weight: 500;
 }
-.wrapper form .pass span{
+/* .main .sub2 .container .wrapper form .pass span{
     position: absolute;
-    top: 105%;
+    top: 110%;
     right: 15px;
     transform: translate(0, -50%);
     cursor: pointer;
-}
+} */
 .wrapper form .pass span i{
     font-size: 20px;
     color: rgb(152, 149, 149);
@@ -158,6 +161,9 @@ body{
     padding-left: 10px;
     border: 1px solid rgb(152, 149, 149);
 }
+.wrapper form .pass input:focus{
+    box-shadow: inset 0px 0px 2px 2px rgb(237, 233, 233);
+}
 input[type="checkbox"] {
     appearance: none; /* Removes default styles (may not work in all browsers) */
     -webkit-appearance: none; /* For older WebKit-based browsers */
@@ -168,9 +174,11 @@ input[type="checkbox"] {
     border: 1px solid rgb(152, 149, 149); /* Set the border color */
     border-radius: 4px; /* Add some rounded corners */
     cursor: pointer; /* Change cursor on hover */
+    
 }
 input[type="checkbox"]:checked {
-    background-color: rgb(152, 149, 149); /* Set the background color when checked */
+    background-color: #a47145; /* Set the background color when checked */
+    border: none;
 }
   input[type="checkbox"]:checked::before {
     content: '\2713'; /* Unicode check mark character */

@@ -24,18 +24,17 @@
                         <div class="above">Login </div>
         
                         <div class="below">Glad you're back.!</div>
-                        <h3 th:if="${error}" class="error">Invalid login info. Please try again</h3>
-        
+                        
                         <div class="row">
-                            <label for="email">E-mail</label><br>
-                            <input type="email" name="email" id="email" required placeholder="Enter your email" novalidate autocomplete="off">
+                            <div style="display: flex; justify-content: space-between;"><label for="email">E-mail</label><span th:if="${error}" class="error" style="color: red; font-size: 10px;"> &#9432 Invalid email. Please try again!</span></div>
+                            <input type="email" name="email" id="email" required placeholder="Enter your email" novalidate autocomplete="off" th:class="${error} ? 'error' : ''">
                         </div>
-        
+
                         <div class="pass">
                             <label for="password">Password</label><br>
                             <input type="password" name="password" id="password" required placeholder="Enter your password">
-                            <span>
-                                <i class='bx bx-show' aria-hidden="true" id="eye"></i>
+                            <span style="position: absolute; top: 110%; right: 15px; transform: translate(0, -50%); cursor: pointer;">
+                                <i class="bx bx-hide show-hide"></i>
                             </span>
                         </div>
 
@@ -43,7 +42,7 @@
                             <input type="checkbox" name="rememberMe" class="cb">
                         <label for="cb" class="rm">Remember me</label>
                         </div>
-                        
+
                         <div class="button">
                             <input type="submit" value="Login" class="btn">
                         </div>
@@ -59,8 +58,8 @@
             </div>
         </div>
     </div>
-    
-    
    <script src="\static\js\index.js"></script>
+
+   
 </body>
 </html>

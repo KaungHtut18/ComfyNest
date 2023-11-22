@@ -195,4 +195,6 @@ body{
    align-items: center;
    margin-left: 16px;
 }
-
+.wrapper form .row input.error {
+   border-color: red;
+}

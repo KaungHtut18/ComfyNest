@@ -1,13 +1,21 @@
-document.getElementById("eye").onclick = function(){
-    var password = document.querySelector("#password")
-    var eye = document.querySelector("#eye")
+const eye = document.querySelector(".show-hide")
+const password = document.querySelector("#password")
 
+eye.addEventListener("click", () => {
     if(password.type === "password"){
         password.type = "text"
-        eye.style.color = "black"
+        eye.classList.replace("bx-hide", "bx-show");
+        eye.style.color = "black";
     }
     else{
-        password.type = "password"
-        eye.style.color = "rgb(152, 149, 149)"
+        eye.classList.replace("bx-show", "bx-hide");
+        eye.style.color = "#919191"
+        password.type = "password";
     }
-}
+})
+
+const form = document.querySelector("form"),
+    emailField = form.querySelector(".email-field"),
+    emailInput = emailField.querySelector(".email")
+
+

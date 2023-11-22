@@ -16,7 +16,7 @@
            <div class="title">
                <h1>ComfyNest</h1>
                <h4>Your Key to Hassle-Free Dormitory Discovery</h4>
-               <h5 th:if="${error}" style="color: red;">This email is already registered. Please try again with different email</h5>
+               
            </div>
        </div>
        <div class="sub2">
@@ -38,8 +38,9 @@
                        </div>
       
                        <div class="row">
-                           <label for="email">E-mail</label><br>
-                           <input type="email" id="email" name="email" required novalidate autocomplete="off" placeholder="Enter Your Email">
+                        <div style="display: flex; justify-content: space-between;"><label for="email">E-mail</label><span th:if="${error}" class="error" style="color: red; font-size: 10px;"> &#9432 This email is already registered!</span></div>
+                           <input type="email" id="email" name="email" required novalidate autocomplete="off" placeholder="Enter Your Email" th:class="${error} ? 'error' : ''">
+                           
                        </div>
                       
                        <div class="phoneNumber">
@@ -56,7 +57,7 @@
                            <label for="password">Password</label><br>
                            <input type="password" id="password" name="password" required placeholder="Enter Your Password">
                            <span>
-                               <i class='bx bx-show' aria-hidden="true" id="eye"></i>
+                            <i class="bx bx-hide show-hide"></i>
                            </span>
                        </div>
   
