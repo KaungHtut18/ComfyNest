@@ -85,9 +85,9 @@
 <h3 style="font-weight: 300; font-size: 22px;" th:text="${dorm.name}">STK Resort</h3>
 <a th:href="@{'/addfav'+${dorm.id}}"><i id="heartIcon" class='bx bx-heart show-hide' ></i></a>
 </div>
-<div class="rating">
-    <div class="stars" th:with="maxStars=5,rating=${dorm.rating.calcRating()}, fullStars=${#numbers.sequence(1, rating)}">
-        <span th:each="star : ${fullStars}" class="star"><i class="fa-solid fa-star"></i></span>
+<div class="rating"  th:with="maxStars=5,rating=${dorm.rating.calcRating()}, fullStars=${#numbers.sequence(1, rating)}">
+    <div class="stars">
+        <span th:if="${rating>0}" th:each="star : ${fullStars}" class="star"><i class="fa-solid fa-star"></i></span>
         <span th:unless="${rating>=5}">
             <span th:each="star : ${#numbers.sequence(rating + 1, maxStars)}"><i class="fa-regular fa-star"></i></span>
         </span>
