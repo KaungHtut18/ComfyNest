@@ -8,7 +8,12 @@ INSERT INTO LANDLORD (email, firstName, lastName, telephone) VALUES
 INSERT INTO RATING (id,oneCount, twoCount, threeCount, fourCount, fiveCount, zeroCount) VALUES
 (1,0, 0, 3, 0, 0, 0),
 (2,0,2,3,4,0,0),
-(3,0, 0, 0, 0, 5, 0);
+(3,0, 0, 0, 0, 5, 0),
+(4,0,0,0,0,0,0),
+(5,0,0,0,0,0,0),
+(6,0,0,0,0,0,0),
+(7,0,0,0,0,0,0),
+(8,0,0,0,0,0,0);
 
 -- Insert sample data into DORMITORY table
 INSERT INTO DORMITORY (
@@ -19,17 +24,17 @@ INSERT INTO DORMITORY (
 
  (3,3, 'Regent Mansion', 'Chiang Rai', 'Mueang Chiang Rai', 4500, 'Unisex', false, 'Here are some descriptions', 'Here are some rules', 'We provide these amenities', 'RegentMansion1.jpg', 'RegentMansion2.jpg', 'RegentMansion3.jpg', 'RegentMansion4.jpg', 'dormitoryA@example.com', 'landlord1@example.com',20.04309266241252, 99.88063398206963),
 
- (2,2, 'Beyond', 'Chiang Rai', 'Mueang Chiang Rai'RegentMansion, 'Unisex', false, 'Here are some descriptions', 'Here are some rules', 'We provide these amenities', 'Beyond1.jpg', 'Beyond2.jpg', 'Beyond3.jpg', 'Beyond4.jpg', 'dormitoryA@example.com', 'landlord1@example.com',20.046637552020567, 99.88055756857642),
+ (2,2, 'Beyond', 'Chiang Rai', 'Mueang Chiang Rai',4500, 'Unisex', false, 'Here are some descriptions', 'Here are some rules', 'We provide these amenities', 'Beyond1.jpg', 'Beyond2.jpg', 'Beyond3.jpg', 'Beyond4.jpg', 'dormitoryA@example.com', 'landlord1@example.com',20.046637552020567, 99.88055756857642),
 
- (4,4, 'Casa', 'Bangkok', 'Bangkok', 4000, 'unisex', 'false', 'Here are some descriptions about the Casa Dormiotory. This is a group project for the web development course, software specification and analysis and database system.', 'Here are some rules. Yayyy hahaha freedom bacon.', 'We provide these amenities. blah blah blah.', 'Casa1.jpg', 'Casa2.jpg', 'Casa3.jpg', 'Casa4.jpg', 'casa@gmail.com', 'landlord1@example.com', 13.731070368371455, 100.56310517468275),
+ (4,4, 'Casa', 'Bangkok', 'Bangkok', 4000, 'Unisex', false, 'Here are some descriptions about the Casa Dormiotory. This is a group project for the web development course, software specification and analysis and database system.', 'Here are some rules. Yayyy hahaha freedom bacon.', 'We provide these amenities. blah blah blah.', 'Casa1.jpg', 'Casa2.jpg', 'Casa3.jpg', 'Casa4.jpg', 'casa@gmail.com', 'landlord1@example.com', 13.731070368371455, 100.56310517468275),
 
- (5,5, 'Chatthanan', 'Salaya', 'Salaya', 2700, 'unisex', 'false', 'Here are some descriptions about the Chatthanan Dormiotory. This is a group project for the web development course, software specification and analysis and database system.', 'Here are some rules. Yayyy hahaha freedom bacon.', 'We provide these amenities. blah blah blah.', 'Chatthanan1.jpg', 'Chatthanan2.jpg', 'Chatthanan3.jpg', 'Chatthanan4.jpg', 'chatthanan@gmail.com', 'landlord2@example.com', 13.79195063522983, 100.32846182606782),
+ (5,5, 'Chatthanan', 'Salaya', 'Salaya', 2700, 'Unisex', false, 'Here are some descriptions about the Chatthanan Dormiotory. This is a group project for the web development course, software specification and analysis and database system.', 'Here are some rules. Yayyy hahaha freedom bacon.', 'We provide these amenities. blah blah blah.', 'Chatthanan1.jpg', 'Chatthanan2.jpg', 'Chatthanan3.jpg', 'Chatthanan4.jpg', 'chatthanan@gmail.com', 'landlord2@example.com', 13.79195063522983, 100.32846182606782),
 
- (6,6, 'Home and Hill', 'Chiang Mai', 'Chiang Mai', 4000, 'unisex', 'false', 'Here are some descriptions about the Home and Hill Dormiotory. This is a group project for the web development course, software specification and analysis and database system.', 'Here are some rules. Yayyy hahaha freedom bacon.', 'We provide these amenities. blah blah blah.', 'HomeAndChill1.jpg', 'HomeAndChill2.jpg', 'HomeAndChill3.jpg', 'HomeandChill4.jpg', 'homeandhill@gmail.com', 'landlord1@example.com', 18.79177087959815, 98.9506369108173),
+ (6,6, 'Home and Hill', 'Chiang Mai', 'Chiang Mai', 4000, 'Unisex', false, 'Here are some descriptions about the Home and Hill Dormiotory. This is a group project for the web development course, software specification and analysis and database system.', 'Here are some rules. Yayyy hahaha freedom bacon.', 'We provide these amenities. blah blah blah.', 'HomeAndChill1.jpg', 'HomeAndChill2.jpg', 'HomeAndChill3.jpg', 'HomeandChill4.jpg', 'homeandhill@gmail.com', 'landlord1@example.com', 18.79177087959815, 98.9506369108173),
 
- (7,7, 'Phuket Apartment', 'Phuket', 'Phuket', 3000, 'unisex', 'false', 'Here are some descriptions about the Phuket Dormiotory. This is a group project for the web development course, software specification and analysis and database system.', 'Here are some rules. Yayyy hahaha freedom bacon.', 'We provide these amenities. blah blah blah.', 'Natticha1.jpg', 'Natticha2.jpg', 'Natticha3.jpg', 'Natticha4.jpg', 'phuketapartment@gmail.com', 'landlord2@example.com', 7.889482967042707, 98.37763278969014),
+ (7,7, 'Phuket Apartment', 'Phuket', 'Phuket', 3000, 'Unisex', false, 'Here are some descriptions about the Phuket Dormiotory. This is a group project for the web development course, software specification and analysis and database system.', 'Here are some rules. Yayyy hahaha freedom bacon.', 'We provide these amenities. blah blah blah.', 'Natthicha1.jpg', 'Natthicha2.jpg', 'Natthicha3.jpg', 'Natthicha4.jpg', 'phuketapartment@gmail.com', 'landlord2@example.com', 7.889482967042707, 98.37763278969014),
 
- (8,8, 'STK Resort', 'Chiang Rai', 'Chiang Rai', 3000, 'unisex', 'false', 'Here are some descriptions about the STK Dormiotory. This is a group project for the web development course, software specification and analysis and database system.', 'Here are some rules. Yayyy hahaha freedom bacon.', 'We provide these amenities. blah blah blah.', 'STK1.jpg', 'STK2.jpg', 'STK3.jpg', 'STK4.jpg', 'stkdormitory@gmail.com', 'landlord1@example.com', 20.04467581829367, 99.87976215317447);
+ (8,8, 'STK Resort', 'Chiang Rai', 'Mueang Chiang Rai', 3000, 'Unisex', false, 'Here are some descriptions about the STK Dormiotory. This is a group project for the web development course, software specification and analysis and database system.', 'Here are some rules. Yayyy hahaha freedom bacon.', 'We provide these amenities. blah blah blah.', 'STK1.jpg', 'STK2.jpg', 'STK3.jpg', 'STK4.jpg', 'stkdormitory@gmail.com', 'landlord1@example.com', 20.04467581829367, 99.87976215317447);
 
 
 -- Insert sample data into RATING table
