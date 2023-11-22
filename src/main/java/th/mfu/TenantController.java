@@ -68,20 +68,22 @@ public class TenantController {
         this.ratingRepository = ratingRepository;
         this.wishListRepository = wishListRepository;
     }
-
+    
     @GetMapping("/")
-    public String goToLogin(@CookieValue(name="email",defaultValue = "none") String cookieValue)
+    public String goToLogin(@CookieValue(name="email",defaultValue = "none") String cookieValue, HttpServletRequest request)
     {
         try
         {
             tenant=tenantRepository.findByEmail(cookieValue).get();
+            String referer=request.getHeader("referer");
             isLoggedin=true;
             try{
                 addToDormHashSet();
             }catch(NoSuchElementException e){
-
+                return "Login";
             }
-            return "redirect:/homepage";
+            System.out.println(referer);
+            return "redirect:"+referer;
         }catch(NoSuchElementException e)
         {
             return "Login";
@@ -185,6 +187,7 @@ public class TenantController {
         model.addAttribute("dorm", dorm);
         model.addAttribute("phone", phone);
         model.addAttribute("rating", dorm.getRating().calcRating());
+        System.out.println(dorm.getRating().calcRating());
         if(dormIdHashSet.contains(id))
             model.addAttribute("isWished",true);
         else
@@ -271,6 +274,7 @@ public class TenantController {
         response.addCookie(cookie);
         tenant=null;
         isLoggedin=false;
+        dormIdHashSet.clear();
         return "Login";
     }
     @GetMapping("/city/{city}")
